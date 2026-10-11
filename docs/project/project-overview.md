@@ -14,7 +14,7 @@
 
 ### 1.3 Booking and Registrations
 
-**Phase:** 2
+**Phase:** 3
 
  - رزرو برای ساخت
  - Events
@@ -37,7 +37,7 @@
  - Achivements 
   To encourage repeat visits and engagement
 
-### 1.6 Give Shcools, Business Owners, Oragnizations a Way to Request Group Activities, Educational Programs or Special Events
+### 1.6 Give Schools, Business Owners, Oragnizations a Way to Request Group Activities, Educational Programs or Special Events
 
 ## 2. Define Project Scope & MVP
 

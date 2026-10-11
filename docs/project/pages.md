@@ -28,25 +28,25 @@
 **Page ID:** PAGE-004
 
  - خرید لگو بوست
-**Page ID** PAGE-014
+**Page ID:** PAGE-014
 
 #### 1.2.3 بازی سازی با سوپرماریو
 **Page ID:** PAGE-005
-**Phase:** 2
+**Phase:** TBD (Planned feature, future enhancement)
 
 #### 1.2.4 فروش
-**Page ID** PAGE-013
+**Page ID:** PAGE-013
 
  - راهنمای خرید
 
 ##### 1.2.4.1 ست
-**Page ID** PAGE-014
+**Page ID:** PAGE-014
 
  - ست لگو بوست 
 
 ##### 1.2.4.2 قطعه
-**Page ID** PAGE-015
-**Phase:** 2
+**Page ID:** PAGE-015
+**Phase:** TBD (Planned feature, future enhancement)
  - قعطه های لگو با کدهای مخصوص هر قطعه
 
 ### 1.3 گالری
@@ -115,7 +115,7 @@
  - ایمنی و مراقبت از کودکان
 
 ### 1.10 آلبوم
-**Page ID** PAGE-016
+**Page ID:** PAGE-016
 
  - لیست لگو های موجود با عکس و اطلاعات ست لگو
  - وضعیت (آزاد یا درحال ساخت بودن)
