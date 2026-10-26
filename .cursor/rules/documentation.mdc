@@ -1,0 +1,40 @@
+---
+description: Keep project documentation synchronized with every change and delegate documentation updates to the documentation subagent
+alwaysApply: true
+---
+
+# Documentation Sync
+
+A change is not done until the documents it affects are updated in the same piece of work.
+
+## What to update
+
+| When this changes | Update |
+|---|---|
+| Requirement, page, or page section | `docs/project/project-overview.md` or `docs/project/pages.md`; a new page takes the next free PAGE-ID and advances development-plan §3.2 |
+| Decision made | `docs/project/decisions.md` first (status and record), then every document that references the DEC-ID |
+| Task or subtask completed | The subtask checkbox in its phase document; stage or phase status in the phase header and development-plan §4 and §6 when they change |
+| Stack, tooling, scripts, repository structure | development-plan §10, and `README.md` once it exists |
+| Iran-related finding or external service | `docs/project/iran-constraints.md` and the related DEC |
+| New assumption or risk | development-plan §11 or §12 |
+| Agent instructions (`AGENTS.md`, `.cursor/rules/`, `.cursor/agents/`) | development-plan §10 |
+
+## How to update
+
+- Edit the source of truth and link to it elsewhere; do not copy content between documents.
+- Check a subtask only when its work is verifiably done.
+- Keep IDs stable. Dropped items stay in place, marked *Dropped* with the DEC-ID.
+- Update the `Last updated` (or `Last reviewed`) line of every document you change; add one if it is missing.
+- Every relative link you add or touch must resolve.
+- If a change contradicts the documents or depends on a `Pending` decision, ask the user instead of resolving it in the documents.
+
+## Delegating to the documentation subagent
+
+After the main change is complete, delegate to the `documentation` subagent (foreground) when the update:
+- spans more than one document, or touches IDs, statuses, or cross-references;
+- completes a task, feature, or stage, or records a decision;
+- is a documentation consistency audit.
+
+Make the edit yourself when it is a small change to a single document you are already editing.
+
+The subagent cannot see the conversation. In its prompt, state what changed (files and IDs), what is verified done, and any decisions the user confirmed, quoted with the date. Do not edit the same documents while it runs. Review its report and pass its open questions to the user.
