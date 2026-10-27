@@ -25,7 +25,7 @@ A change is not done until the documents it affects are updated in the same piec
 - Check a subtask only when its work is verifiably done.
 - Keep IDs stable. Dropped items stay in place, marked *Dropped* with the DEC-ID.
 - Update the `Last updated` (or `Last reviewed`) line of every document you change; add one if it is missing.
-- Every relative link you add or touch must resolve.
+- Every relative link you add or touch must resolve; check with `python scripts/check-doc-links.py` (the same check CI runs).
 - If a change contradicts the documents or depends on a `Pending` decision, ask the user instead of resolving it in the documents.
 
 ## Delegating to the documentation subagent

@@ -1,7 +1,7 @@
 # Phase 1 — MVP
 
-> **Status:** Planning · **Current stage:** S1.1 · **Last updated:** 2026-10-26
-> Roadmap: [development-plan.md](../development-plan.md) · Requirements: [project-overview.md](../project/project-overview.md), [pages.md](../project/pages.md) · Decisions: [decisions.md](../project/decisions.md) · Constraints: [iran-constraints.md](../project/iran-constraints.md) · Testing: [testing-strategy.md](../testing/testing-strategy.md)
+> **Status:** Planning · **Current stage:** S1.1 · **Last updated:** 2026-10-27
+> Roadmap: [development-plan.md](../development-plan.md) · Requirements: [project-overview.md](../project/project-overview.md), [pages.md](../project/pages.md) · Decisions: [decisions.md](../project/decisions.md) · Constraints: [iran-constraints.md](../project/iran-constraints.md) · Testing: [testing-strategy.md](../testing/testing-strategy.md), [test-plan.md](../testing/test-plan.md)
 
 ## 1. Purpose
 
@@ -116,10 +116,11 @@ All MVP requirements in overview §2.2 (see §4).
 - **Depends on:** — (remote hosting: DEC-020)
 - **Acceptance criteria:** Initial commit contains `docs/`; line endings normalized to LF in the repository (Windows development environment); working tree clean.
 - **Subtasks:**
-  - [ ] Initialize the repository and default branch
+  - [x] Initialize the repository and default branch
   - [ ] Add `.gitattributes` and `.gitignore`
-  - [ ] Commit `docs/`
+  - [x] Commit `docs/`
   - [ ] Add the remote once DEC-020 is decided
+- **Note:** A GitHub remote was added and the initial commit pushed on 2026-10-26 while DEC-020 is Pending (development-plan §11, A-7).
 
 ##### T1.1.1.2 — Establish the documentation structure
 - **Purpose:** Separate the roadmap from phase specifications; track decisions and Iran constraints centrally.
@@ -324,6 +325,7 @@ All MVP requirements in overview §2.2 (see §4).
 - **Outcome:** Every change validated before merging (overview §2.2.1).
 - **Depends on:** T1.3.2.2, DEC-020
 - **Acceptance criteria:** On every pull request, CI runs lint, type-check, unit/integration tests, and a production build; merging is blocked when any check fails; extended with E2E and accessibility checks in F1.7.1.
+- **Current state (2026-10-27):** Only the documentation link check runs (`.github/workflows/ci.yml`). Lint, type-check, tests, build, and branch protection are not set up.
 - **Subtasks:**
   - [ ] Pipeline configuration
   - [ ] Branch protection on the main branch

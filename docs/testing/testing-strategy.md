@@ -1,7 +1,7 @@
 # Testing Strategy
 
-> **Status:** Draft — proposals require approval · **Last updated:** 2026-10-26
-> Roadmap: [development-plan.md](../development-plan.md) · Requirements: [project-overview.md](../project/project-overview.md) §2.2.1–2.2.2 · Phase 1 testing work: [phase-1-mvp.md](../phases/phase-1-mvp.md) §7, §10, S1.7 · Decisions: [decisions.md](../project/decisions.md) · Constraints: [iran-constraints.md](../project/iran-constraints.md)
+> **Status:** Draft — proposals require approval · **Last updated:** 2026-10-27
+> Roadmap: [development-plan.md](../development-plan.md) · Test plan: [test-plan.md](test-plan.md) · Requirements: [project-overview.md](../project/project-overview.md) §2.2.1–2.2.2 · Phase 1 testing work: [phase-1-mvp.md](../phases/phase-1-mvp.md) §7, §10, S1.7 · Decisions: [decisions.md](../project/decisions.md) · Constraints: [iran-constraints.md](../project/iran-constraints.md)
 
 This document defines how the project is tested across all phases: what is tested, how, with which tools, and which gates a change must pass. It is a strategy, not a task list. Tasks and their checkboxes stay in the phase documents, and decisions stay in `decisions.md`.
 
@@ -31,7 +31,9 @@ Items marked **Proposed** need approval. Each maps to a DEC-ID or is listed in [
 
 | Fact | Source |
 |---|---|
-| No application code, technology stack, CI, hosting, or test tooling exists; version control is not initialized | development-plan §4 |
+| No application code, technology stack, hosting, or application test tooling exists | development-plan §4 |
+| The repository is under git and hosted on GitHub (`shn27sh/K-A-website`, default branch `main`) | Repository; T1.1.1.1 |
+| One GitHub Actions job exists: "Documentation links", which checks every relative link and heading anchor in the Markdown files on pull requests to `main`, pushes to `main`, and manual runs. It passed on GitHub for the initial commit (2026-10-26) | `.github/workflows/ci.yml`, `scripts/check-doc-links.py` |
 | Phase 1 is a content and marketing website of 13 pages with no booking, payment, or user accounts | phase-1-mvp §3 |
 | Persian (RTL) is the default locale; English (LTR) is secondary with scope pending | overview §2.2; DEC-002 |
 | Every change is tested before merging; approved changes are deployed consistently | overview §2.2.1 |
@@ -93,6 +95,7 @@ These are documented rather than filled in:
 - **Core journeys** are proposed, not confirmed (T1.7.1.1).
 - **No owner** is defined for testing inside Iran, real devices, release approval, or defect tracking.
 - **No coverage targets or defect severity scheme** exist yet (proposed in §10, §11).
+- **CI platform in use but not decided:** the repository already uses GitHub and GitHub Actions, while DEC-020 (Git hosting, CI/CD platform, deployment path) is still Pending. The deployment path to an Iran-hosted server is open in any case.
 - **Phases 2–4** have no architecture yet; their sections here are principles, to be detailed when each phase starts.
 
 ## 2. Testing Objectives and Scope
@@ -416,7 +419,7 @@ Examples:
 - **Method:**
   - **Allowlist test:** every E2E run fails if the page requests a host that is not approved in `decisions.md`.
   - **Blocked-foreign mode:** the page sweep runs with all hosts other than the site's own blocked, and pages must still render completely. This automates the T1.7.2.2 condition.
-  - **Network checks:** manual or scripted checks without a VPN on همراه اول, ایرانسل, and رایتل and at least one fixed-line ISP (T1.7.2.2).
+  - **Network checks:** manual or scripted checks without a VPN on at least one mobile operator and one fixed-line ISP (T1.7.2.2). **Proposed (DEC-034):** cover all three mobile operators (همراه اول, ایرانسل, رایتل) where testers are available.
   - **Monitoring:** checks from inside and outside Iran (T1.8.3.1).
 - **Tools:** Playwright request interception; scripted checks from a server in Iran; uptime monitoring.
 - **Priority:** P1. **Starts:** allowlist test in S1.4; network checks once staging exists (T1.3.5.2).
@@ -481,7 +484,7 @@ test('PAGE-001 requests only approved hosts', async ({ page, baseURL }) => {
 | Performance | Lighthouse CI; sitespeed.io; `web-vitals` | Budgets in CI; self-hosted measurement from Iran; real-user data | All self-hostable | WebPageTest (self-hosted) |
 | HTML validation | html-validate | Offline, configurable | The public W3C validator is a foreign service | Self-hosted Nu validator |
 | Static analysis | TypeScript, ESLint, Stylelint with a logical-properties plugin, Prettier | Catches physical `left`/`right` CSS before review | — | — |
-| Documentation | Markdown link checker (for example lychee) | Enforces the documentation rule that every relative link resolves | — | markdown-link-check |
+| Documentation | `scripts/check-doc-links.py` (implemented; Python standard library only) | Enforces the documentation rule that every relative link and anchor resolves, with no dependencies to install | Runs offline | lychee, if external links are checked later |
 | Security | OSV-Scanner or `npm audit`; gitleaks; OWASP ZAP baseline | Dependency, secret, and dynamic scanning without SaaS | The ZAP image is on Docker Hub, which is restricted in Iran; use a mirror | Trivy |
 | Mutation testing | StrykerJS (targeted) | Measures whether tests detect faults (§10.4) | — | — |
 | Load (Phase 3) | k6 | Scriptable, open source | — | Artillery |
@@ -518,7 +521,9 @@ CI runners hosted abroad may be unable to reach an Iran-hosted staging environme
 
 ## 8. Automation and CI/CD
 
-**Proposed (DEC-020, DEC-025).**
+**Current state:** CI runs only the "Documentation links" job (`.github/workflows/ci.yml`), because there is no application code to lint, type-check, test, or build. No placeholder jobs are added; each step below joins the workflow when the code it checks exists.
+
+**Target pipeline, proposed (DEC-020, DEC-025).**
 
 | Trigger | Steps | Time budget | Blocking |
 |---|---|---|---|
@@ -638,7 +643,7 @@ This strategy therefore complements coverage with:
 | G2 Staging | After each merge to main | Deployment succeeded; staging smoke tests pass; no high-risk findings in the ZAP baseline |
 | G3 Feature done | When a feature is completed | Development-plan §13 Feature criteria; Page Implementation Standard (phase-1-mvp §10) for pages |
 | G4 Production release | Every release | G2 passed; manual regression of changed areas; no open critical or high defects; content sign-off; rollback ready; approval recorded |
-| G5 MVP launch | End of S1.7 | Phase-1-mvp §11 criteria; T1.7.2.1–T1.7.2.4 and T1.7.3.1–T1.7.3.2 complete; no open critical or high defects; medium defects accepted in writing |
+| G5 MVP launch readiness | End of S1.7, before go-live | T1.7.1.1–T1.7.3.2 complete; P1 and P2 tests passing or deferred in writing; no open critical or high defects; medium defects accepted in writing. Go-live checks in production and the phase-1-mvp §11 completion criteria follow in S1.8 |
 
 **Entry criteria for S1.7:** pages implemented (S1.5), integrations complete (S1.6), content approved (T1.1.4.2), and staging stable.
 
@@ -650,6 +655,8 @@ This strategy therefore complements coverage with:
 | High | Core content or journey wrong or broken | Wrong price, hours, or phone number; language switcher broken; keyboard trap | Blocks release |
 | Medium | Noticeable defect with a workaround | Misaligned RTL section; overflow at one viewport | Allowed with written acceptance |
 | Low | Cosmetic | Minor spacing difference from the design | Allowed |
+
+Defect priority, lifecycle, and tracking are defined in the [test plan §12](test-plan.md#12-defect-management-severity-and-priority).
 
 ## 12. Risks and Mitigations
 
@@ -704,7 +711,7 @@ This strategy therefore complements coverage with:
 
 - Who performs QA: a dedicated tester, the developers, center staff, or a combination?
 - Who approves production releases (T1.8.1.2)?
-- Where are defects tracked? This likely follows the Git hosting choice in DEC-020.
+- Where are defects tracked? GitHub Issues is available now that the repository is on GitHub; confirm with DEC-020.
 - Which numbers stay in Latin digits in the Persian interface, if any (for example LEGO set numbers)? This defines the digit allowlist in §4.9.
 - Does the request form, if chosen, accept landline numbers?
 - Which older Android and iOS versions are supported? Phase-1-mvp §7 defers this to market and analytics data.
@@ -718,9 +725,9 @@ Existing task IDs are referenced. Items under "Proposed additions" are not yet i
 
 | Stage | Testing work | Existing tasks | Proposed additions |
 |---|---|---|---|
-| S1.1 | Approve this strategy; decide DEC-024, DEC-025, DEC-033, DEC-034; confirm the core journeys | T1.1.2.1, T1.7.1.1 (journeys) | Defect severity scheme; review checklist |
+| S1.1 | Approve this strategy; confirm the core journeys. Testing decisions follow the register: DEC-024 by T1.2.1.2 (S1.2); DEC-025, DEC-033, DEC-034 by S1.3 | T1.1.2.1, T1.7.1.1 (journeys) | Defect severity scheme; review checklist |
 | S1.2 | Contrast checks, component states, RTL/LTR variants, and focus in Figma | T1.2.1.2, T1.2.1.3, T1.2.2.2 | Accessibility and mirroring review in design sign-off |
-| S1.3 | Test runners; CI with static checks, unit tests, and build; locale utility tests; direction test; dependency audit; staging smoke tests; verify tool downloads from the CI network | T1.3.2.2, T1.3.3.1, T1.3.3.2, T1.3.4.1, T1.3.5.2 | Secret scanning; documentation link check; content checks |
+| S1.3 | Test runners; CI with static checks, unit tests, and build; locale utility tests; direction test; dependency audit; staging smoke tests; verify tool downloads from the CI network | T1.3.2.2, T1.3.3.1, T1.3.3.2, T1.3.4.1, T1.3.5.2 | Secret scanning; content checks (the documentation link check is already in CI) |
 | S1.4 | Component tests; page sweep harness (allowlist, blocked-foreign mode, axe, overflow, metadata); visual baselines; performance budgets in CI | T1.4.1.1, T1.4.2.1, T1.4.3.1–T1.4.3.3 | Page sweep; visual regression; performance budgets in CI |
 | S1.5 | Every page joins the page sweep; page-specific tests; journeys implemented as pages land | S1.5 tasks; phase-1-mvp §10 | — |
 | S1.6 | Map fallback, form, analytics exclusion, and SEO output tests | T1.6.1.1, T1.6.2.1, T1.6.3.1, T1.6.4.1 | — |

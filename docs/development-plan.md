@@ -1,6 +1,6 @@
 # Development Plan
 
-> **Status:** Active · **Current phase:** Phase 1 (MVP), Stage S1.1 · **Last updated:** 2026-10-26
+> **Status:** Active · **Current phase:** Phase 1 (MVP), Stage S1.1 · **Last updated:** 2026-10-27
 
 The central roadmap and entry point for the project. It describes the whole project at a glance. Detailed features, development tasks, and subtasks live in the phase documents.
 
@@ -18,6 +18,7 @@ The central roadmap and entry point for the project. It describes the whole proj
 | [project/decisions.md](project/decisions.md) | Decision register: pending and decided items (DEC-IDs) |
 | [project/iran-constraints.md](project/iran-constraints.md) | Iran-specific constraints: connectivity, hosting, services, legal, localization, testing |
 | [testing/testing-strategy.md](testing/testing-strategy.md) | Testing approach, tools, quality gates, and coverage targets across all phases (Draft) |
+| [testing/test-plan.md](testing/test-plan.md) | Master test plan: scope, traceability, risk-based test matrix, test cycles, schedule, responsibilities, defect management, release readiness (Draft) |
 
 **Sources of truth:** requirements → `project-overview.md` and `pages.md`; decisions → `decisions.md`; work breakdown and progress → phase documents. This document summarizes and links; it does not repeat details.
 
@@ -70,16 +71,17 @@ Phase 1 delivers the MVP. Phases 2–4 are post-MVP and are not part of the MVP 
 
 IDs are never reused. Dropped items stay in place, marked *Dropped* with a reference to the decision.
 
-## 4. Current State (2026-10-26)
+## 4. Current State (2026-10-27)
 
 | Area | State |
 |---|---|
 | Documentation | Documentation set established; agent instructions and documentation workflow in place (§10, §15) |
-| Version control | Not initialized |
+| Version control | Git, default branch `main`; initial commit pushed to GitHub on 2026-10-26 (A-7). `.gitattributes` and `.gitignore` not yet added (T1.1.1.1) |
 | Designs (Figma) | Not started |
 | Technology stack | Not decided |
 | Code | None |
-| Hosting, domain, CI/CD | Not decided / not set up |
+| CI | Documentation link check on GitHub Actions, passing. Application checks follow T1.3.4.1 once the stack exists |
+| Hosting, domain, deployment | Not decided (DEC-018, DEC-019, DEC-020) |
 | Content and media | None in the repository |
 
 No features are implemented. Every task in the phase documents is planned work.
@@ -170,10 +172,13 @@ Full details: [iran-constraints.md](project/iran-constraints.md).
 | `docs/development-plan.md` | This roadmap |
 | `docs/phases/` | Phase specifications |
 | `docs/project/` | Requirements, decision register, Iran constraints |
-| `docs/testing/` | Testing strategy |
+| `docs/testing/` | Testing strategy (how testing is done) and master test plan (what is tested, when, by whom, against which criteria) |
 | `AGENTS.md` | Project-wide instructions for AI agents |
 | `.cursor/rules/documentation.mdc` | Cursor rule: keep documentation synchronized with changes; when to delegate |
 | `.cursor/agents/documentation.md` | Cursor subagent that performs documentation updates and audits |
+| `.github/workflows/ci.yml` | GitHub Actions workflow "CI": documentation link check on pull requests to `main`, pushes to `main`, and manual runs |
+| `.github/dependabot.yml` | Monthly Dependabot updates of GitHub Actions |
+| `scripts/check-doc-links.py` | Checks every relative link and heading anchor in `.md` and `.mdc` files (Python standard library); run locally with `python scripts/check-doc-links.py` |
 
 The application structure is defined in T1.3.2.1 and documented here once decided.
 
@@ -187,6 +192,7 @@ The application structure is defined in T1.3.2.1 and documented here once decide
 | A-4 | The MVP stores no personal data, except form submissions if DEC-009 selects a form | Follows from Phase 1 scope |
 | A-5 | Phase 2, being an independent project, may follow its own timeline | To confirm in DEC-027 |
 | A-6 | Phase 1 is mostly pre-rendered pages with little client-side logic, so test risk concentrates in content, layout, localization, integrations, and delivery ([testing-strategy.md](testing/testing-strategy.md) §1.3) | To verify with DEC-016 |
+| A-7 | GitHub hosts the repository and GitHub Actions runs CI | In use since 2026-10-26; confirm in DEC-020 |
 
 ## 12. Key Risks
 

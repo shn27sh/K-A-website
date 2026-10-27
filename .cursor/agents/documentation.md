@@ -21,7 +21,7 @@ You maintain the documentation of a Persian-first LEGO center website. You keep 
 
 ## Verify before returning
 
-- Every relative link in the documents you changed resolves to an existing file.
+- `python scripts/check-doc-links.py` reports 0 broken links.
 - IDs are unique and unchanged, and the next free PAGE-ID in development-plan §3.2 is correct.
 - Statuses agree between the phase document headers and development-plan §4 and §6.
 - Every changed document has an updated `Last updated` (or `Last reviewed`) date.

@@ -1,6 +1,6 @@
 # Decision Register
 
-> **Status:** Living document · **Last updated:** 2026-10-26
+> **Status:** Living document · **Last updated:** 2026-10-27
 
 Every pending or decided project decision has a DEC-ID. Documents reference decisions by ID instead of repeating them.
 
@@ -29,7 +29,7 @@ Every pending or decided project decision has a DEC-ID. Documents reference deci
 | DEC-017 | Content management approach (files in the repository, headless CMS, or admin panel) | Depends on DEC-014 | T1.3.1.1 | Pending |
 | DEC-018 | Hosting provider and location for staging and production | iran-constraints §1, §3 | T1.3.5.1 | Pending |
 | DEC-019 | Domain name, TLD, and registrant (eNamad implications) | iran-constraints §4; Phase 4 | T1.3.5.3 | Pending |
-| DEC-020 | Git hosting, CI/CD platform, and deployment path to the host | overview §2.2.1; iran-constraints §8 | T1.3.5.1 | Pending |
+| DEC-020 | Git hosting, CI/CD platform, and deployment path to the host | overview §2.2.1; iran-constraints §8; GitHub and GitHub Actions in use since 2026-10-26 (A-7) | T1.3.5.1 | Pending |
 | DEC-021 | Analytics tool, tracked events, privacy approach | overview §2.2; iran-constraints §7 | T1.6.3.1 | Pending |
 | DEC-022 | Map provider and navigation app links | overview §2.2; iran-constraints §7 | T1.2.2.2 | Pending |
 | DEC-023 | Typefaces and web licenses (Persian and Latin) | iran-constraints §6 | T1.2.1.2 | Pending |
