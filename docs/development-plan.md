@@ -1,6 +1,6 @@
 # Development Plan
 
-> **Status:** Active · **Current phase:** Phase 1 (MVP), Stage S1.1 · **Last updated:** 2026-10-27
+> **Status:** Active · **Current phase:** Phase 1 (MVP), Stage S1.1 · **Last updated:** 2026-10-29
 
 The central roadmap and entry point for the project. It describes the whole project at a glance. Detailed features, development tasks, and subtasks live in the phase documents.
 
@@ -71,12 +71,12 @@ Phase 1 delivers the MVP. Phases 2–4 are post-MVP and are not part of the MVP 
 
 IDs are never reused. Dropped items stay in place, marked *Dropped* with a reference to the decision.
 
-## 4. Current State (2026-10-27)
+## 4. Current State (2026-10-29)
 
 | Area | State |
 |---|---|
 | Documentation | Documentation set established; agent instructions and documentation workflow in place (§10, §15) |
-| Version control | Git, default branch `main`; initial commit pushed to GitHub on 2026-10-26 (A-7). `.gitattributes` and `.gitignore` not yet added (T1.1.1.1) |
+| Version control | Git, default branch `main`; initial commit pushed to GitHub on 2026-10-26 (A-7). `.gitattributes` and `.gitignore` are in the repository ([T1.1.1.1](phases/phase-1-mvp.md#t1111--initialize-the-git-repository)) |
 | Designs (Figma) | Not started |
 | Technology stack | Not decided |
 | Code | None |
@@ -84,7 +84,7 @@ IDs are never reused. Dropped items stay in place, marked *Dropped* with a refer
 | Hosting, domain, deployment | Not decided (DEC-018, DEC-019, DEC-020) |
 | Content and media | None in the repository |
 
-No features are implemented. Every task in the phase documents is planned work.
+No product features are implemented. T1.1.1.1 and T1.1.1.2 are done; every other task in the phase documents is planned work.
 
 ## 5. Guiding Principles
 
@@ -174,6 +174,8 @@ Full details: [iran-constraints.md](project/iran-constraints.md).
 | `docs/project/` | Requirements, decision register, Iran constraints |
 | `docs/testing/` | Testing strategy (how testing is done) and master test plan (what is tested, when, by whom, against which criteria) |
 | `AGENTS.md` | Project-wide instructions for AI agents |
+| `.gitattributes` | Text stored as LF; binary types excluded from line-ending conversion |
+| `.gitignore` | OS junk, editor folders, secret files, and Python caches for the documentation link check |
 | `.cursor/rules/documentation.mdc` | Cursor rule: keep documentation synchronized with changes; when to delegate |
 | `.cursor/agents/documentation.md` | Cursor subagent that performs documentation updates and audits |
 | `.github/workflows/ci.yml` | GitHub Actions workflow "CI": documentation link check on pull requests to `main`, pushes to `main`, and manual runs |

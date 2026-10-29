@@ -1,6 +1,6 @@
 # Phase 1 — MVP
 
-> **Status:** Planning · **Current stage:** S1.1 · **Last updated:** 2026-10-27
+> **Status:** Planning · **Current stage:** S1.1 · **Last updated:** 2026-10-29
 > Roadmap: [development-plan.md](../development-plan.md) · Requirements: [project-overview.md](../project/project-overview.md), [pages.md](../project/pages.md) · Decisions: [decisions.md](../project/decisions.md) · Constraints: [iran-constraints.md](../project/iran-constraints.md) · Testing: [testing-strategy.md](../testing/testing-strategy.md), [test-plan.md](../testing/test-plan.md)
 
 ## 1. Purpose
@@ -117,10 +117,10 @@ All MVP requirements in overview §2.2 (see §4).
 - **Acceptance criteria:** Initial commit contains `docs/`; line endings normalized to LF in the repository (Windows development environment); working tree clean.
 - **Subtasks:**
   - [x] Initialize the repository and default branch
-  - [ ] Add `.gitattributes` and `.gitignore`
+  - [x] Add `.gitattributes` and `.gitignore`
   - [x] Commit `docs/`
-  - [ ] Add the remote once DEC-020 is decided
-- **Note:** A GitHub remote was added and the initial commit pushed on 2026-10-26 while DEC-020 is Pending (development-plan §11, A-7).
+  - [x] Add the remote once DEC-020 is decided
+- **Note:** A GitHub remote was added and the initial commit pushed on 2026-10-26 while DEC-020 is Pending (development-plan §11, A-7). The remote subtask is checked because that remote was already present (confirmed 2026-10-29); DEC-020 stays Pending.
 
 ##### T1.1.1.2 — Establish the documentation structure
 - **Purpose:** Separate the roadmap from phase specifications; track decisions and Iran constraints centrally.

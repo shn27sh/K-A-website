@@ -1,0 +1,18 @@
+# Store text as LF. This repository is developed on Windows (T1.1.1.1).
+* text=auto eol=lf
+
+# Binary assets (none tracked yet; keep Git from treating them as text)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.eot binary
+*.fig binary
+*.zip binary

@@ -2,6 +2,8 @@
 
 A Persian-first (RTL), bilingual (Persian/English), responsive website for a LEGO center where children build LEGO sets, launched in Iran.
 
+> **Last updated:** 2026-10-29
+>
 > The official brand name is not decided yet (DEC-012), so this README uses the repository name.
 
 ## Status
@@ -27,6 +29,8 @@ Everything above is planned. Nothing is implemented. Details: [development plan]
 .
 ├── AGENTS.md                      Instructions for AI agents
 ├── README.md
+├── .gitattributes                 LF line endings for text files
+├── .gitignore                     OS junk, editors, secrets, Python caches
 ├── .cursor/
 │   ├── agents/documentation.md    Documentation subagent
 │   └── rules/documentation.mdc    Documentation sync rule

@@ -1,0 +1,24 @@
+# Operating system
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editors. Shared project config under .cursor/ stays tracked.
+.idea/
+.vscode/
+*.swp
+*~
+
+# Secrets. Example files stay tracked.
+.env
+.env.*
+!.env.example
+*.pem
+credentials.json
+
+# Python, used by scripts/check-doc-links.py
+__pycache__/
+*.py[cod]
+.venv/
+venv/
