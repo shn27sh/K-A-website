@@ -1,6 +1,6 @@
 # Iran Constraints
 
-> **Status:** Living document · **Last reviewed:** 2026-10-29
+> **Status:** Living document · **Last reviewed:** 2026-11-02
 > Filtering, sanctions, and regulations change often. Re-verify every item when the related decision is made. Legal items require confirmation by a local expert.
 
 ## 1. Connectivity
@@ -39,7 +39,7 @@ Evaluation points: reachability inside and outside Iran; static hosting, object 
 - Foreign registrars commonly refuse Iranian customers; international TLDs obtained through intermediaries carry suspension risk.
 - The registrant should be the legal business owner; eNamad checks domain ownership (verify).
 - SSL via Let's Encrypt or the hosting provider.
-- Using "LEGO" in a domain or brand name may conflict with the LEGO Group's trademark policy (DEC-012).
+- The brand name is Karoandishe and does not contain "LEGO" (DEC-012). A logo or a domain still needs the trademark check (DEC-019 for the domain).
 
 ## 5. Legal and Regulatory (Verify with a Local Expert)
 
@@ -70,7 +70,7 @@ Evaluation points: reachability inside and outside Iran; static hosting, object 
 | Maps | Google Maps Platform requires international billing; availability varies, and it may not load in Iran without a VPN | Decided (DEC-022): Google Maps, Neshan (نشان), and Balad (بلد), plus a static fallback. Neshan and Balad cover visitors without a VPN | 1 |
 | Analytics | Foreign tools may be unreliable to load or manage from Iran; data stored abroad | Self-hosted analytics (e.g., Umami, Matomo) on Iranian hosting; Iranian services | 1 |
 | Video | YouTube filtered | Direction, not decided (DEC-011): Aparat (آپارات), and possibly self-hosted storage | 1 |
-| Social and messaging | Instagram and Telegram filtered but widely used; WhatsApp accessible since late 2024 (verify); domestic messengers (Eitaa, Bale, Rubika). DEC-010 is still pending for which channels | Linking filtered platforms is allowed; visitors use their own VPN. Do not embed them | 1 |
+| Social and messaging | Instagram is filtered. The channels to display are Instagram (a link only), an Aparat channel, and SMS (DEC-010). The phone number, SMS number, and Instagram and Aparat addresses are set in the Figma designs (T1.2.2.2). This does not decide video hosting (DEC-011) | Linking filtered platforms is allowed; visitors use their own VPN. Do not embed them | 1 |
 | Spam protection | Google reCAPTCHA unreliable | Honeypot fields, rate limiting, self-hosted captcha | 1 |
 | Fonts and CDNs | Foreign font services and public CDNs may be slow or blocked | Self-host all assets | 1 |
 | Email | Deliverability from Iranian servers to international mailbox providers may be poor | Test deliverability; consider SMS or messaging notifications | 1, 3 |

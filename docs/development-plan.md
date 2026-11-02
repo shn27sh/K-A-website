@@ -1,6 +1,6 @@
 # Development Plan
 
-> **Status:** Active · **Current phase:** Phase 1 (MVP), Stage S1.1 · **Last updated:** 2026-10-29
+> **Status:** Active · **Current phase:** Phase 1 (MVP), Stage S1.1 · **Last updated:** 2026-11-02
 
 The central roadmap and entry point for the project. It describes the whole project at a glance. Detailed features, development tasks, and subtasks live in the phase documents.
 
@@ -37,7 +37,7 @@ A Persian-first (RTL), bilingual (Persian/English), responsive website for a LEG
 
 **Target visitors** (§3): parents (primary); schools, teachers, business owners, and مهدکودک‌ها (secondary); children and teenagers.
 
-The center's official name is pending (DEC-012); documents refer to it as "the center".
+The official brand name is Karoandishe, and it is subject to change (DEC-012). Documents may keep saying "the center".
 
 ## 3. Terminology and Identifiers
 
@@ -71,7 +71,7 @@ Phase 1 delivers the MVP. Phases 2–4 are post-MVP and are not part of the MVP 
 
 IDs are never reused. Dropped items stay in place, marked *Dropped* with a reference to the decision.
 
-## 4. Current State (2026-10-29)
+## 4. Current State (2026-11-02)
 
 | Area | State |
 |---|---|
@@ -82,13 +82,13 @@ IDs are never reused. Dropped items stay in place, marked *Dropped* with a refer
 | Code | None |
 | CI | Documentation link check on GitHub Actions, passing. Application checks follow T1.3.4.1 once the stack exists |
 | Hosting, domain, deployment | Not decided (DEC-018, DEC-019, DEC-020) |
-| Content and media | None in the repository |
+| Content and media | Assets for [T1.1.4.3](phases/phase-1-mvp.md#t1143--collect-photos-and-videos) collected (user, 2026-11-02); not in the repository yet |
 
-No product features are implemented. T1.1.1.1 and T1.1.1.2 are done; every other task in the phase documents is planned work.
+No product features are implemented. Done tasks are recorded in [phase-1-mvp.md](phases/phase-1-mvp.md): T1.1.1.1, T1.1.1.2, T1.1.2.1, T1.1.2.2, T1.1.3.1, and T1.1.4.3. T1.1.3.2 has the locale pattern, the page pairing, and hreflang documented; the slug-language convention is proposed and not approved (DEC-035). T1.1.4.1 and T1.1.4.2 are not done. Section detail for DEC-005 and DEC-006, the final spelling of each slug after DEC-035 is approved, and the phone, SMS, Instagram, and Aparat values are set in the Figma designs (T1.2.2.2).
 
 ## 5. Guiding Principles
 
-1. **Persian-first.** Persian (RTL) is the default language; English (LTR) is secondary (scope: DEC-002).
+1. **Persian-first.** Persian (RTL) is the default language at the site root. English (LTR) has full parity (DEC-002): the same pages and features. This does not decide the album (Phase 2) or booking (Phase 3) languages.
 2. **Built for Iran.** Host where users in Iran can reliably reach the site, avoid runtime dependencies on foreign-hosted resources, and test from Iranian networks without a VPN. See [iran-constraints.md](project/iran-constraints.md).
 3. **Design first.** Pages are designed and approved in Figma before implementation; Cursor is used to implement from the Figma designs.
 4. **Decide when necessary.** Undecided items stay open until they block work, then get recorded in `decisions.md`.
@@ -189,8 +189,8 @@ The application structure is defined in T1.3.2.1 and documented here once decide
 | ID | Assumption | Status |
 |---|---|---|
 | A-1 | Most visitors access the site from inside Iran, largely on mobile devices | To verify with analytics after launch |
-| A-2 | The center provides all text, photos, videos, prices, and schedules | To confirm in DEC-014 |
-| A-3 | After launch, prices, events, and courses change more often than other content | To confirm in DEC-014 |
+| A-2 | The center provides all text, photos, videos, prices, and schedules | Still open; DEC-014 only decided that a developer updates the site when needed |
+| A-3 | After launch, prices, events, and courses change more often than other content | Frequency of change still unverified; when changes are needed, a developer applies them (DEC-014) |
 | A-4 | The MVP stores no personal data, because DEC-009 decided there is no form | Confirmed (DEC-009, 2026-10-29) |
 | A-5 | Phase 2, being an independent project, may follow its own timeline | To confirm in DEC-027 |
 | A-6 | Phase 1 is mostly pre-rendered pages with little client-side logic, so test risk concentrates in content, layout, localization, integrations, and delivery ([testing-strategy.md](testing/testing-strategy.md) §1.3) | To verify with DEC-016 |
@@ -205,10 +205,10 @@ The application structure is defined in T1.3.2.1 and documented here once decide
 | Sanctions affecting tools (Figma, GitHub, Cursor, package registries, Google services) | Workflow interruption | Local backups, registry mirrors, alternatives identified in advance | iran-constraints §2, §8 |
 | Content and media not ready | Launch delay | Content inventory and owners in S1.1 | T1.1.4.1, DEC-014 |
 | Open decisions block design | Design delay | Resolve in S1.1; track in register | T1.1.2.1 |
-| Price volatility from inflation | Outdated prices on the site | Easy update path; agreed price format | DEC-014, DEC-015, DEC-017 |
-| Use of the LEGO trademark in name, logo, or domain | Forced rebrand or domain loss | Review before brand and domain decisions | DEC-012, DEC-019 |
+| Price volatility from inflation | Outdated prices on the site | A developer updates prices when needed (DEC-014); format per DEC-015; update path still open (DEC-017) | DEC-014, DEC-015, DEC-017 |
+| Use of the LEGO trademark in the logo or domain | Forced rebrand or domain loss | The name Karoandishe does not contain LEGO; logo and domain review are still open | DEC-012, DEC-019 |
 | Publishing children's images | Privacy and reputational harm | Publish only after the necessary permissions have been obtained (DEC-013) | DEC-013 |
-| Bilingual effort underestimated | Doubles content, design, and QA work | Define English scope early | DEC-002 |
+| Bilingual effort underestimated | Doubles content, design, and QA work | The English scope is full parity, so this cost is confirmed (DEC-002) | DEC-002 |
 | Unknown album integration | Rework in Phase 2 | Define the integration contract when Phase 2 starts | DEC-027 |
 | Post-MVP scope entering Phase 1 | MVP delay | MVP discipline; explicit decision required | §5 |
 
@@ -218,7 +218,7 @@ The application structure is defined in T1.3.2.1 and documented here once decide
 |---|---|
 | Subtask | Its checklist item is satisfied |
 | Task | Acceptance criteria met; code reviewed (if code); CI passing; affected documents updated; related decisions recorded |
-| Feature | All tasks done; works in Persian (and English per DEC-002) at all breakpoints; automated tests and accessibility checks pass; deployed to staging and checked from an Iranian network |
+| Feature | All tasks done; works in Persian at all breakpoints, and in English at all breakpoints for the pages and features DEC-002 covers (full parity); automated tests and accessibility checks pass; deployed to staging and checked from an Iranian network |
 | Stage | All features done, or explicitly deferred through a recorded decision; phase document updated |
 | Phase | The phase's completion criteria are met and signed off by stakeholders; launches verified in production from inside Iran |
 

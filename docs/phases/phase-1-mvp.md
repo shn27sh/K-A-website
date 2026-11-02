@@ -1,6 +1,6 @@
 # Phase 1 — MVP
 
-> **Status:** Planning · **Current stage:** S1.1 · **Last updated:** 2026-10-29
+> **Status:** Planning · **Current stage:** S1.1 · **Last updated:** 2026-11-02
 > Roadmap: [development-plan.md](../development-plan.md) · Requirements: [project-overview.md](../project/project-overview.md), [pages.md](../project/pages.md) · Decisions: [decisions.md](../project/decisions.md) · Constraints: [iran-constraints.md](../project/iran-constraints.md) · Testing: [testing-strategy.md](../testing/testing-strategy.md), [test-plan.md](../testing/test-plan.md)
 
 ## 1. Purpose
@@ -17,13 +17,13 @@ From overview §1: present the center (§1.1); display activities and programs (
 
 | PAGE-ID | Page | Notes |
 |---|---|---|
-| PAGE-001 | صفحه ی اصلی | Events are a section of this page and are not live in the MVP (DEC-005) |
+| PAGE-001 | صفحه ی اصلی | Events are a section of this page and are not live in the MVP (DEC-005). Trust sections: safety, instructors, educational benefits, and policies (DEC-006). Competitions, achievements, and what the policies contain are determined in the Figma design (T1.1.2.2, T1.2.2.2) |
 | PAGE-002 | معرفی خدمات | |
 | PAGE-003 | ساخت لگو | Set data relates to Phase 2–3 (DEC-028) |
 | PAGE-004 | کارگاه لگو بوست | Links to PAGE-014; the Boost set is for sale (DEC-001) |
 | PAGE-006 | گالری | Children's photos, videos, and project work published only after permission (DEC-013) |
 | PAGE-007 | درباره ی ما | |
-| PAGE-008 | تماس با ما | Google Maps, Neshan (نشان), and Balad (بلد) (DEC-022) |
+| PAGE-008 | تماس با ما | Google Maps, Neshan (نشان), and Balad (بلد) (DEC-022). Channels: Instagram (a link only), an Aparat channel, and SMS (DEC-010) |
 | PAGE-009 | کارن و کیانا | Two AI characters who introduce the center; commercial content; its own page (DEC-007) |
 | PAGE-010 | معرفی دوره های کارگاهی | Fixed capacity, entered by hand, not automatic (DEC-004) |
 | PAGE-011 | همکاری | Contact channels; no online form (DEC-009) |
@@ -50,11 +50,11 @@ All MVP requirements in overview §2.2 (see §4).
 | Pages listed in §3.1 | pages.md (Phase 1-MVP) |
 | Responsive; desktop, tablet, and mobile versions | overview §2.2 |
 | FAQ | overview §2.2 |
-| Bilingual: Persian (RTL, default) and English (LTR) | overview §2.2; conversation (Persian-first) |
+| Bilingual: Persian (RTL, default) and English (LTR), full parity (DEC-002) | overview §2.2; DEC-002 |
 | Location and map | overview §2.2 |
 | Basic SEO & GEO | overview §2.2 (GEO meaning: DEC-008) |
 | Simple navigation | overview §2.2 |
-| Social media links | overview §2.2 |
+| Social and contact channels: Instagram (a link only), an Aparat channel, and SMS (DEC-010). No embeds of filtered platforms | overview §2.2; DEC-010 |
 | Good performance and fast loading | overview §2.2 |
 | Analytics | overview §2.2 |
 | Browser compatibility | overview §2.2 |
@@ -67,12 +67,12 @@ All MVP requirements in overview §2.2 (see §4).
 
 - **Iran constraints** apply throughout, especially connectivity, third-party services, hosting, localization, and testing ([iran-constraints.md](../project/iran-constraints.md)).
 - **No online payment** in this phase.
-- **External inputs:** content and media from the center (DEC-014); brand assets (DEC-012); stakeholder decisions (§12).
+- **External inputs:** content and media for launch (original authorship still open); after launch, a developer applies updates when needed (DEC-014); brand assets (DEC-012); stakeholder decisions (§12).
 - **Design gate:** a page is implemented (S1.5) only after its Figma design is signed off (T1.2.2.3).
 
 ## 6. Expected Outcomes
 
-- All in-scope pages live in production in Persian, and in English per DEC-002.
+- All in-scope pages live in production in Persian and in English (full parity, DEC-002).
 - Site reachable and fast from Iranian mobile and fixed networks without a VPN.
 - A CI pipeline validating every change; deployments to staging and approval-based deployments to production.
 - Handover documentation: content updates, deployment, rollback.
@@ -141,11 +141,11 @@ All MVP requirements in overview §2.2 (see §4).
 - **Depends on:** Stakeholder input.
 - **Acceptance criteria:** DEC-001–DEC-007, DEC-009, DEC-010, and DEC-012–DEC-015 are each *Decided* (with date and rationale) or *Deferred* to a named later task.
 - **Subtasks:**
-  - [ ] Page structure: DEC-001, DEC-005, DEC-006, DEC-007
-  - [ ] Language scope: DEC-002
+  - [x] Page structure: DEC-001, DEC-005, DEC-006, DEC-007
+  - [x] Language scope: DEC-002
   - [x] MVP behavior: DEC-003, DEC-004, DEC-009
-  - [ ] Channels and brand: DEC-010, DEC-012
-  - [ ] Content policy: DEC-013, DEC-014, DEC-015
+  - [x] Channels and brand: DEC-010, DEC-012
+  - [x] Content policy: DEC-013, DEC-014, DEC-015
 
 ##### T1.1.2.2 — Align `pages.md` with decisions
 - **Purpose:** Keep the page inventory accurate and unambiguous.
@@ -155,7 +155,7 @@ All MVP requirements in overview §2.2 (see §4).
 - **Acceptance criteria:** Each PAGE-ID is defined exactly once (other mentions are explicit cross-references); every MVP page has a content list; PAGE-009 is described; new pages use the next free ID (PAGE-017 onward) without renumbering.
 - **Subtasks:**
   - [x] Resolve PAGE-014 placement (DEC-001)
-  - [ ] Add pages or sections from DEC-005 and DEC-006. DEC-005 is recorded: these are sections of existing pages, not new PAGE-IDs, and events are not live in the MVP. Competitions and achievements are not placed on a page yet (T1.1.3.1). DEC-006 is still Pending.
+  - [x] Add pages or sections from DEC-005 and DEC-006. These are sections of existing pages, not new PAGE-IDs. Events stay on PAGE-001 and are not live. Children's projects stay on PAGE-006. The remaining sections, including what the policies contain, are determined in the Figma design (T1.2.2.2). Confirmed by the user on 2026-11-02
   - [x] Describe PAGE-009 (DEC-007)
 
 #### F1.1.3 — Information Architecture
@@ -167,19 +167,21 @@ All MVP requirements in overview §2.2 (see §4).
 - **Depends on:** T1.1.2.2
 - **Acceptance criteria:** Every in-scope PAGE-ID has a position in the hierarchy and at least one navigation path from PAGE-001; primary navigation, mobile navigation pattern, and footer contents are defined.
 - **Subtasks:**
-  - [ ] Hierarchy, including the services group (PAGE-002 → PAGE-003, PAGE-004, PAGE-013/014) and PAGE-010
-  - [ ] Primary and footer navigation
-  - [ ] Main call to action per page
+  - [x] Hierarchy, including the services group (PAGE-002 → PAGE-003, PAGE-004, PAGE-013/014) and PAGE-010
+  - [x] Primary and footer navigation
+  - [x] Main call to action per page
+- **Note:** The slug language is proposed in DEC-035 and is not approved. After approval, the final spelling of each slug is created with that page's Figma design (T1.2.2.2). DEC-005 and DEC-006 section detail is determined in that same design (T1.1.2.2).
 
 ##### T1.1.3.2 — Define URL and language structure
 - **Purpose:** Fix the bilingual structure before design and implementation.
 - **Outcome:** URL scheme for Persian and English.
 - **Depends on:** DEC-002
-- **Acceptance criteria:** URL pattern for fa (default) and en defined; slug language decided; each Persian page mapped to its English counterpart or marked Persian-only; hreflang approach documented.
+- **Current decision (DEC-002):** Full parity. English is at `/en/`. Persian stays at the site root, with no `/fa/` prefix. The slug language is not part of DEC-002.
+- **Acceptance criteria:** URL pattern for fa (default, site root) and en (`/en/`) defined; slug language decided; every in-scope Persian page mapped to its English counterpart (full parity, DEC-002); hreflang approach documented. The locale pattern, the page pairing, and hreflang are documented in [pages.md](../project/pages.md#23-url-and-language-structure). The slug language is proposed in DEC-035 and is not approved, so that part of the criteria is not met. After approval, the final spelling of each slug is created with that page's Figma design (T1.2.2.2).
 - **Subtasks:**
-  - [ ] Locale URL pattern
-  - [ ] Slug convention
-  - [ ] fa ↔ en page mapping
+  - [x] Locale URL pattern
+  - [ ] Slug convention. Proposal: localized slugs (DEC-035, Pending). Not approved. After approval, the final spelling of each slug is created with that page's Figma design (T1.2.2.2), as confirmed on 2026-11-02
+  - [x] fa ↔ en page mapping. Every Phase 1 PAGE-ID is paired in pages.md §2.3.4. The slug strings there are the DEC-035 proposal, not approved text
 
 #### F1.1.4 — Content Inventory and Production
 
@@ -196,21 +198,22 @@ All MVP requirements in overview §2.2 (see §4).
 ##### T1.1.4.2 — Write Persian copy and English translation
 - **Outcome:** Approved copy for all pages.
 - **Depends on:** T1.1.4.1, DEC-002
-- **Acceptance criteria:** Persian copy approved by the center for every in-scope page; English copy approved per DEC-002; fa/en glossary of recurring terms (for example ساخت لگو, لگو بوست).
+- **Acceptance criteria:** Persian copy approved by the center for every in-scope page; English copy approved for every in-scope page (full parity, DEC-002); fa/en glossary of recurring terms (for example ساخت لگو, لگو بوست).
 - **Subtasks:**
   - [ ] Persian copy per page
-  - [ ] English translation per DEC-002
+  - [ ] English translation for every in-scope page (full parity, DEC-002)
   - [ ] Glossary
 
 ##### T1.1.4.3 — Collect photos and videos
 - **Outcome:** Media for the gallery, about, courses, and home pages.
 - **Depends on:** DEC-013, DEC-011
 - **Acceptance criteria:** Original-resolution media collected for PAGE-001, PAGE-006, PAGE-007, PAGE-010; consent recorded for every identifiable child; videos prepared for the chosen hosting.
+- **Note:** Assets collected (user, 2026-11-02). DEC-011 (video hosting) remains Pending. Media are not in the repository.
 - **Subtasks:**
-  - [ ] Environment and facilities photos
-  - [ ] Children's projects (with consent)
-  - [ ] Workshop photos and videos
-  - [ ] Opening photos and videos (PAGE-007)
+  - [x] Environment and facilities photos
+  - [x] Children's projects (with consent)
+  - [x] Workshop photos and videos
+  - [x] Opening photos and videos (PAGE-007)
 
 ### S1.2 — UX & Visual Design (Figma)
 
@@ -219,6 +222,7 @@ All MVP requirements in overview §2.2 (see §4).
 ##### T1.2.1.1 — Define the visual direction
 - **Outcome:** Approved style direction for the website.
 - **Depends on:** DEC-012
+- **Current decision (DEC-012):** The official brand name is Karoandishe, and it is subject to change. Logo and brand assets were not supplied, so this task stays open.
 - **Acceptance criteria:** Style direction approved by stakeholders, suitable for both parents (primary audience) and children; logo and brand assets available in vector form.
 
 ##### T1.2.1.2 — Define design tokens
@@ -236,7 +240,7 @@ All MVP requirements in overview §2.2 (see §4).
 - **Acceptance criteria:** Every component used in page designs exists as a component with variants and states (default, hover, focus, disabled, error where applicable); RTL and LTR behavior defined; responsive behavior defined; component inventory documented.
 - **Subtasks (expected; confirm against wireframes):**
   - [ ] Header and navigation (desktop and mobile), language switcher
-  - [ ] Footer, social links
+  - [ ] Footer and social links: Instagram (a link only), an Aparat channel, and SMS (DEC-010); no embeds of filtered platforms
   - [ ] Buttons and links
   - [ ] Cards (activity, course, set)
   - [ ] FAQ accordion
@@ -253,11 +257,13 @@ Form elements are not needed (DEC-009, 2026-10-29): there is no form.
 - **Outcome:** Low-fidelity layouts for every in-scope page.
 - **Depends on:** T1.1.3.1, T1.1.4.1, DEC-003, DEC-004, DEC-009
 - **Acceptance criteria:** Mobile and desktop wireframes for each in-scope PAGE-ID include every section listed in `pages.md`; reviewed by stakeholders.
+- **Note:** DEC-005 and DEC-006 sections that `pages.md` does not already name, including what the policies contain, are determined in the Figma designs (user, 2026-11-02; T1.1.2.2).
 
 ##### T1.2.2.2 — Create high-fidelity designs
 - **Outcome:** Final designs for every in-scope page.
 - **Depends on:** T1.2.1.3, T1.2.2.1, T1.1.4.2, DEC-010, DEC-015, DEC-022
-- **Acceptance criteria:** Each PAGE-ID designed at mobile, tablet, and desktop in Persian (RTL); English (LTR) variants per DEC-002; built only from library components and variables; uses real Persian copy, not placeholder text.
+- **Acceptance criteria:** Each PAGE-ID designed at mobile, tablet, and desktop in Persian (RTL) and in English (LTR) (full parity, DEC-002); built only from library components and variables; uses real Persian copy, not placeholder text.
+- **Note:** Confirmed by the user on 2026-11-02, this design also carries: the DEC-005 and DEC-006 sections for that page (T1.1.2.2), what the policies contain (DEC-006), the final spelling of that page's slug once DEC-035 is approved, and the phone number, SMS number, and Instagram and Aparat addresses (DEC-010).
 
 ##### T1.2.2.3 — Review and sign off designs
 - **Outcome:** Approved designs ready for implementation.
@@ -291,7 +297,7 @@ Form elements are not needed (DEC-009, 2026-10-29): there is no form.
   - [ ] All assets self-hostable; no required runtime calls to foreign services except hosts approved in `decisions.md`
   - [ ] Builds and deploys on the chosen hosting (DEC-018) under Iranian network conditions, including package registry access
   - [ ] Supports unit/integration, E2E, and accessibility testing in CI
-  - [ ] Content updates feasible for the people defined in DEC-014
+  - [ ] Content updates feasible for a developer (DEC-014); content-management approach still open (DEC-017)
   - [ ] Phase 3–4 server-side needs can be added or cleanly paired (evaluated, not built)
   - [ ] Fits the Figma-to-Cursor workflow and team skills
 
@@ -373,7 +379,7 @@ Form elements are not needed (DEC-009, 2026-10-29): there is no form.
 
 ##### T1.4.3.2 — Implement the footer
 - **Depends on:** T1.4.2.1, DEC-010
-- **Acceptance criteria:** Footer contents match T1.1.3.1; social links per DEC-010 have accessible labels; no embedded widgets from filtered platforms.
+- **Acceptance criteria:** Footer contents match T1.1.3.1; the channels are Instagram (a link only), an Aparat channel, and SMS (DEC-010), with accessible labels; no embeds of filtered platforms.
 
 ##### T1.4.3.3 — Implement the page template and error pages
 - **Depends on:** T1.4.3.1, T1.4.3.2
@@ -388,11 +394,15 @@ Each page feature must also satisfy the **Page Implementation Standard** (§10).
 #### F1.5.1 — PAGE-001 صفحه ی اصلی
 
 ##### T1.5.1.1 — Implement the home page
-- **Acceptance criteria:** All sections present; each main activity links to its page; the events section follows DEC-005.
+- **Acceptance criteria:** All sections present; each main activity links to its page; events are a section of this page and are not live in the MVP (DEC-005); safety, instructors, educational benefits, and policies are on this page (DEC-006). Competitions, achievements, and what the policies contain are determined in the Figma design (T1.2.2.2).
 - **Subtasks:**
   - [ ] Hero
   - [ ] Main activities
   - [ ] Events (DEC-005)
+  - [ ] Safety (DEC-006)
+  - [ ] Instructors (DEC-006)
+  - [ ] Educational benefits (DEC-006)
+  - [ ] Policies (DEC-006)
 
 #### F1.5.2 — PAGE-002 معرفی خدمات
 
@@ -462,12 +472,12 @@ Each page feature must also satisfy the **Page Implementation Standard** (§10).
 #### F1.5.9 — PAGE-008 تماس با ما
 
 ##### T1.5.9.1 — Implement the contact page
-- **Acceptance criteria:** Phone numbers are tappable (`tel:`) on mobile; working hours shown with Persian digits in Persian; the location block works without a VPN through Neshan, Balad, and the static fallback (Google Maps may not; F1.6.1, DEC-022); social links per DEC-010.
+- **Acceptance criteria:** Phone numbers are tappable (`tel:`) on mobile; working hours shown with Persian digits in Persian; the location block works without a VPN through Neshan, Balad, and the static fallback (Google Maps may not; F1.6.1, DEC-022); the channels are Instagram (a link only), an Aparat channel, and SMS (DEC-010), with no embeds of filtered platforms.
 - **Subtasks:**
   - [ ] Address and map
-  - [ ] Contact channels
+  - [ ] Contact channels, including SMS (DEC-010)
   - [ ] Working hours
-  - [ ] Social pages
+  - [ ] Instagram (a link only) and an Aparat channel (DEC-010)
 
 #### F1.5.10 — PAGE-009 کارن و کیانا
 
@@ -490,7 +500,7 @@ Each page feature must also satisfy the **Page Implementation Standard** (§10).
 #### F1.5.12 — PAGE-012 پرسش های متداول
 
 ##### T1.5.12.1 — Implement the FAQ page
-- **Acceptance criteria:** Questions operable by keyboard and screen reader; content in Persian and English per DEC-002; FAQ structured data validates.
+- **Acceptance criteria:** Questions operable by keyboard and screen reader; content in Persian and English for this page (full parity, DEC-002); FAQ structured data validates.
 - **Subtasks:**
   - [ ] Age
   - [ ] Prerequisites
@@ -542,7 +552,7 @@ Tests are written alongside each feature. This stage completes coverage and runs
   3. Organization: home → collaboration page (PAGE-011) → requests a meeting through contact channels (DEC-009); no form.
   4. Visitor switches language and lands on the equivalent page.
   5. Buyer: sales page → Boost set → understands the purchase method (DEC-003).
-- **Acceptance criteria:** Each confirmed journey has E2E tests running in CI on mobile and desktop viewports, in Persian (and English per DEC-002); failures block merging.
+- **Acceptance criteria:** Each confirmed journey has E2E tests running in CI on mobile and desktop viewports, in Persian and in English (full parity, DEC-002); failures block merging.
 
 ##### T1.7.1.2 — Complete unit and integration tests for critical functionality
 - **Acceptance criteria:** Locale utilities, locale routing and direction, and navigation behavior covered; all pass in CI. There is no form to validate (DEC-009).
@@ -610,7 +620,7 @@ Tests are written alongside each feature. This stage completes coverage and runs
 Applies to every page feature in S1.5:
 
 - [ ] Matches the signed-off Figma design at mobile, tablet, and desktop
-- [ ] Persian (RTL) complete; English (LTR) per DEC-002
+- [ ] Persian (RTL) complete; English (LTR) for every in-scope page (full parity, DEC-002)
 - [ ] Approved copy only; no placeholder text
 - [ ] Semantic HTML, correct heading hierarchy, alt text, keyboard accessible
 - [ ] Unique SEO metadata per locale (T1.6.4.1)
@@ -621,7 +631,7 @@ Applies to every page feature in S1.5:
 
 ## 11. Phase Completion Criteria (MVP Launch)
 
-- [ ] All in-scope PAGE-IDs live in production (PAGE-009 per DEC-007), in Persian and in English per DEC-002
+- [ ] All in-scope PAGE-IDs live in production (PAGE-009 per DEC-007), in Persian and in English (full parity, DEC-002)
 - [ ] All confirmed requirements in §4 met
 - [ ] Quality targets in §7 (as confirmed in DEC-024) met
 - [ ] CI runs all tests on every change; production deployments happen only through the pipeline after approval
@@ -633,7 +643,7 @@ Applies to every page feature in S1.5:
 
 | Stage | Decisions |
 |---|---|
-| S1.1 | DEC-001–DEC-007, DEC-009, DEC-010, DEC-011, DEC-012–DEC-015 |
+| S1.1 | DEC-001–DEC-007, DEC-009, DEC-010, DEC-011, DEC-012–DEC-015, DEC-035 |
 | S1.2 | DEC-023, DEC-024, DEC-026 |
 | S1.3 | DEC-016–DEC-020, DEC-025, DEC-033, DEC-034 |
 | S1.6 | DEC-008, DEC-021, DEC-022 |

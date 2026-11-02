@@ -1,6 +1,6 @@
 # Testing Strategy
 
-> **Status:** Draft — proposals require approval · **Last updated:** 2026-10-29
+> **Status:** Draft — proposals require approval · **Last updated:** 2026-11-02
 > Roadmap: [development-plan.md](../development-plan.md) · Test plan: [test-plan.md](test-plan.md) · Requirements: [project-overview.md](../project/project-overview.md) §2.2.1–2.2.2 · Phase 1 testing work: [phase-1-mvp.md](../phases/phase-1-mvp.md) §7, §10, S1.7 · Decisions: [decisions.md](../project/decisions.md) · Constraints: [iran-constraints.md](../project/iran-constraints.md)
 
 This document defines how the project is tested across all phases: what is tested, how, with which tools, and which gates a change must pass. It is a strategy, not a task list. Tasks and their checkboxes stay in the phase documents, and decisions stay in `decisions.md`.
@@ -35,7 +35,7 @@ Items marked **Proposed** need approval. Each maps to a DEC-ID or is listed in [
 | The repository is under git and hosted on GitHub (`shn27sh/K-A-website`, default branch `main`) | Repository; T1.1.1.1 |
 | One GitHub Actions job exists: "Documentation links", which checks every relative link and heading anchor in the Markdown files on pull requests to `main`, pushes to `main`, and manual runs. It passed on GitHub for the initial commit (2026-10-26) | `.github/workflows/ci.yml`, `scripts/check-doc-links.py` |
 | Phase 1 is a content and marketing website of 13 pages with no booking, payment, or user accounts | phase-1-mvp §3 |
-| Persian (RTL) is the default locale; English (LTR) is secondary with scope pending | overview §2.2; DEC-002 |
+| Persian (RTL) is the default locale at the site root; English (LTR) has full parity, so every in-scope page has an English counterpart (DEC-002). The slug-language convention is proposed and not approved (DEC-035). After approval, the final spelling of each slug is created with that page's Figma design (T1.2.2.2) | overview §2.2; DEC-002; DEC-035 |
 | Every change is tested before merging; approved changes are deployed consistently | overview §2.2.1 |
 | Unit/integration tests for critical functionality, E2E tests for core user journeys, basic responsive and accessibility checks, all run in CI before deployment | overview §2.2.2 |
 | Quality targets for performance, accessibility (WCAG 2.2 AA), browsers, and SEO are proposed | phase-1-mvp §7; DEC-024 (Pending) |
@@ -60,7 +60,7 @@ Nothing below is implemented. The risk column is this strategy's assessment and 
 | Integration | Google Maps, Neshan (نشان), and Balad (بلد), with a static fallback. Google Maps may fail without a VPN; Neshan, Balad, and the fallback must still work | 1 | F1.6.1; DEC-022 | High |
 | Integration | Request form | 1 | F1.6.2; DEC-009 | Not needed: no form |
 | Integration | Video hosting | 1 | DEC-011 | Medium |
-| Integration | Social links | 1 | DEC-010 | Low |
+| Integration | Social links: Instagram (a link only), an Aparat channel, and SMS. No embeds of filtered platforms | 1 | DEC-010 | Low |
 | Integration | Analytics | 1 | F1.6.3; DEC-021 | Medium |
 | SEO | Metadata, canonical, hreflang, sitemap, robots, structured data | 1 | T1.6.4.1 | Medium |
 | SEO | GEO | 1 | DEC-008 | Unknown |
@@ -76,7 +76,7 @@ Nothing below is implemented. The risk column is this strategy's assessment and 
 | ID | Assumption | Effect on this strategy | Verify by |
 |---|---|---|---|
 | A-1 | Most visitors are in Iran, mostly on mobile | Mobile-first test priority; Android emphasis in the device matrix | Analytics after launch |
-| A-3 | Prices, events, and courses change often after launch | Content changes need validation and regression checks | DEC-014 |
+| A-3 | How often prices, events, and courses change after launch is unverified; when changes are needed, a developer applies them (DEC-014) | Content changes need validation and regression checks | After launch; DEC-014 for who updates |
 | A-4 | The MVP stores no personal data, because there is no form | Phase 1 security scope stays small | DEC-009 (decided 2026-10-29) |
 | A-6 | Phase 1 is mostly pre-rendered pages with little client-side logic | Risk concentrates in content, layout, localization, integrations, and delivery, which shapes the pyramid (§5) | DEC-016 |
 
@@ -88,7 +88,6 @@ These are documented rather than filled in:
 
 - **Stack and tools** (DEC-016, DEC-025) are undecided, so the tools in §6 are a proposal.
 - **Quality targets** (DEC-024) are proposals; quality gates in §11 depend on them.
-- **English scope** (DEC-002) decides whether the test matrix doubles.
 - **Content management** (DEC-017): if content is published without a pull request, content changes skip CI.
 - **Breakpoints** are not defined until the Figma tokens exist (T1.2.1.2).
 - **Core journeys** are proposed, not confirmed (T1.7.1.1).
@@ -102,7 +101,7 @@ These are documented rather than filled in:
 ### 2.1 Objectives
 
 1. Prevent defects that make the site unreachable, slow, or broken for visitors in Iran.
-2. Make the Persian RTL experience correct by default, and English correct per DEC-002.
+2. Make the Persian RTL experience correct by default, and English correct for every in-scope page (full parity, DEC-002).
 3. Protect trust content: accurate prices, hours, and contact details; children's media published only after the necessary permissions (DEC-013).
 4. Meet the accessibility, performance, and browser targets confirmed in DEC-024.
 5. Validate every change in CI before merging, quickly enough that the workflow stays efficient (overview §2.2.1).
@@ -112,7 +111,7 @@ These are documented rather than filled in:
 
 | Phase | In scope | Out of scope |
 |---|---|---|
-| 1 | All in-scope pages in both locales; localization; components; integrations (map: Google Maps, Neshan, and Balad; analytics, video, social links); SEO output; security headers; performance; accessibility; responsive and browser compatibility; delivery pipeline; reachability from Iran. No request form (DEC-009) | Load testing (static pages; host and CDN capacity checked with the provider); penetration testing; internals of third-party services (only our integration and fallbacks are tested); the request form (not needed, DEC-009) |
+| 1 | All in-scope pages in both locales; localization; components; integrations (map: Google Maps, Neshan, and Balad; analytics, video, social links: Instagram as a link only, an Aparat channel, and SMS, DEC-010); SEO output; security headers; performance; accessibility; responsive and browser compatibility; delivery pipeline; reachability from Iran. No request form (DEC-009) | Load testing (static pages; host and CDN capacity checked with the provider); penetration testing; internals of third-party services (only our integration and fallbacks are tested); the request form (not needed, DEC-009) |
 | 2 | Integration of the album into PAGE-016, the data contract, performance and security at the boundary | Album internals, which the album project tests (phase-2-album §3) |
 | 3 | Booking rules, concurrency, identification, notifications, data protection, load | Payment (Phase 4, unless DEC-029 decides otherwise) |
 | 4 | Payment flow, failure modes, idempotency, reconciliation, payment security | Gateway internals |
@@ -151,7 +150,7 @@ Test names start with the PAGE-ID or task ID they verify, for example `PAGE-008 
 
 Examples:
 - Persian normalization: one case per branch: ي → ی, ك → ک, Arabic-Indic and Latin digits, mixed input, empty input, and ZWNJ (U+200C) preserved.
-- Locale fallback: what happens when an English counterpart does not exist (per DEC-002).
+- Locale guard: a missing English counterpart for an in-scope page fails the check. Full parity (DEC-002) means every in-scope page has one; this is a guard, not an expected Persian-only page.
 - Sitemap generation: each page and locale appears exactly once, with reciprocal hreflang entries.
 
 ### 3.5 Black-Box Strategy
@@ -162,7 +161,7 @@ Examples:
 |---|---|
 | Requirements-based testing | Every section listed for a page in `pages.md` is present; every acceptance criterion has a test |
 | Equivalence partitioning and boundary values | Solar Hijri date boundaries, price formatting per DEC-015, and in Phase 3, capacity values 0, 1, full, and full + 1 |
-| Decision tables | Language switcher: the page has an English counterpart or not, and the visitor is on Persian or English |
+| Decision tables | Language switcher: the visitor is on Persian or English, and the switcher opens the other locale of the same page (full parity, DEC-002) |
 | State transitions | Mobile menu and image viewer; booking states (Phase 3); payment states (Phase 4) |
 | Journey testing | The core user journeys (T1.7.1.1) |
 | Exploratory testing | Time-boxed sessions with written charters |
@@ -378,7 +377,7 @@ Example: on PAGE-012, Enter and Space toggle a question, `aria-expanded` updates
   - Persian digits in the Persian interface and Solar Hijri dates;
   - Toman/Rial formatting (DEC-015);
   - no Arabic ي or ك in content, and ZWNJ preserved through the whole pipeline, including minifiers and any CMS;
-  - translation completeness per DEC-002, and language-switcher destinations;
+  - translation completeness for every in-scope page (full parity, DEC-002), and language-switcher destinations;
   - metadata per locale.
 - **Method:**
   - Automated content checks on every change.
@@ -391,7 +390,7 @@ Example: on PAGE-012, Enter and Space toggle a question, `aria-expanded` updates
 Examples:
 - Content files contain no U+064A (ي) or U+0643 (ك).
 - Visible text on Persian pages contains no Latin digits, except in elements on an agreed allowlist (§13.3).
-- Every Persian page in the English scope has an English counterpart, and the switcher opens it.
+- Every in-scope Persian page has an English counterpart (full parity, DEC-002), and the switcher opens it. A missing translation fails as a guard.
 
 ### 4.10 Iran Network and Resilience Testing
 
@@ -571,7 +570,7 @@ Targets for performance, accessibility, browsers, breakpoints, and SEO are defin
 | Requests to unapproved hosts | 0 on every page | Allowlist test (§4.10) |
 | Rendering with foreign domains blocked | Every page renders completely | Blocked-foreign mode (§4.10) |
 | Horizontal overflow | 0 at all tested viewports | Page sweep (§4.3) |
-| Missing translations | 0 for pages in the English scope | Content checks (§4.9) |
+| Missing translations | 0; every in-scope page has an English counterpart (full parity, DEC-002) | Content checks (§4.9) |
 | Broken internal links | 0 | Page sweep and link checker |
 | Page weight | Budgets in §4.6 | Performance budgets in CI |
 
@@ -653,7 +652,7 @@ Defect priority, lifecycle, and tracking are defined in the [test plan §12](tes
 | CI cannot reach Iran-hosted staging, or tool downloads are restricted (browser binaries, container images) | Medium | Medium | Mirrors, CI caching, a runner inside Iran; verify in T1.3.4.1 | DEC-020 |
 | Foreign testing services unavailable or impossible to pay for | Medium | High | Self-hosted, open-source tool set (§6) | DEC-025 |
 | Content changes bypass CI | High | Medium | Build-time validation, post-publish smoke tests, scheduled crawl | DEC-017 |
-| Bilingual scope doubles the test matrix | Medium | Medium | Decide DEC-002 early; generate locale permutations; Persian first | DEC-002 |
+| Bilingual scope doubles the test matrix | Medium | Medium | English scope is full parity (DEC-002), so the matrix covers both locales; generate locale permutations; Persian first | DEC-002 |
 | Visual regression noise from font rendering or dynamic content | Medium | Medium | Baselines in a consistent CI container, fixture content, masks, thresholds | — |
 | Flaky E2E tests erode trust in CI | Medium | Medium | Role-based selectors, no fixed waits, isolated data, quarantine policy | §10.3 |
 | Automated accessibility checks give false confidence | Medium | High | Manual screen reader testing in Persian | T1.7.2.3 |
@@ -678,7 +677,7 @@ Defect priority, lifecycle, and tracking are defined in the [test plan §12](tes
 | DEC-020 CI/CD and deployment path | Where tests run; a runner inside Iran | T1.3.5.1 |
 | DEC-018 Hosting | Staging tests, preview environments, performance from Iran | T1.3.5.1 |
 | DEC-017 Content management | Whether content changes pass through CI | T1.3.1.1 |
-| DEC-002 English scope | Size of the test matrix; translation completeness rules | T1.1.3.2 |
+| DEC-002 English scope | Decided (2026-11-02): full parity. The test matrix covers both locales. Slug language is DEC-035 (Pending): localized slugs are proposed, not approved. After approval, the final spelling of each slug is created with that page's Figma design (T1.2.2.2) | T1.1.3.2 |
 | DEC-009 Request mechanism | Decided: no form. Journey 3 uses contact channels on PAGE-011; no form tests | T1.2.2.1 |
 | DEC-021 Analytics | Real-user performance data; excluding staging traffic | T1.6.3.1 |
 | DEC-022 Map | Allowlist entries and fallback tests. Providers: Google Maps, Neshan, and Balad. Google Maps may fail without a VPN | T1.2.2.2 |

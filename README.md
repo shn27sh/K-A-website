@@ -2,9 +2,9 @@
 
 A Persian-first (RTL), bilingual (Persian/English), responsive website for a LEGO center where children build LEGO sets, launched in Iran.
 
-> **Last updated:** 2026-10-29
+> **Last updated:** 2026-11-02
 >
-> The official brand name is not decided yet (DEC-012), so this README uses the repository name.
+> The official brand name is Karoandishe, and it is subject to change (DEC-012). This README uses the repository name.
 
 ## Status
 

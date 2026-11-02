@@ -1,6 +1,6 @@
 # Decision Register
 
-> **Status:** Living document · **Last updated:** 2026-10-29
+> **Status:** Living document · **Last updated:** 2026-11-02 (DEC-035)
 
 Every pending or decided project decision has a DEC-ID. Documents reference decisions by ID instead of repeating them.
 
@@ -11,19 +11,19 @@ Every pending or decided project decision has a DEC-ID. Documents reference deci
 | ID | Decision needed | Context / source | Needed by | Status |
 |---|---|---|---|---|
 | DEC-001 | Placement of PAGE-014: one page reached from PAGE-004 and PAGE-013, or separate pages? | pages.md listed PAGE-014 under both | T1.1.3.1 | Decided |
-| DEC-002 | Scope and audience of the English (LTR) version: full parity or a subset; URL structure | overview §2.2 (bilingual); Persian-first | T1.1.3.2 | Pending |
+| DEC-002 | Scope and audience of the English (LTR) version: full parity or a subset; URL structure | overview §2.2 (bilingual); Persian-first. Locale prefixes are decided. The slug-language convention is DEC-035 (Pending). After that convention is approved, the final spelling of each slug is created with that page's Figma design (T1.2.2.2) | T1.1.3.2 | Decided |
 | DEC-003 | How visitors buy from PAGE-013/014 without online payment | Sales in MVP; payment in Phase 4 | T1.2.2.1 | Decided |
 | DEC-004 | Workshop capacity on PAGE-010 in the MVP: static values or omitted | PAGE-010 lists capacity; live capacity is Phase 3 | T1.2.2.1 | Decided |
-| DEC-005 | Events, competitions, achievements, children's projects: sections in existing pages or new PAGE-IDs; how events are updated | overview §1.2, §1.5; PAGE-001 "رویداد ها" | T1.1.3.1 | Decided |
-| DEC-006 | Placement of trust content: safety, instructors, educational benefits, policies; what "policies" contain | overview §1.4. User deferred on 2026-10-29 ("TBD") | T1.1.3.1 | Pending |
+| DEC-005 | Events, competitions, achievements, children's projects: sections in existing pages or new PAGE-IDs; how events are updated | overview §1.2, §1.5; PAGE-001 "رویداد ها". Sections not already named in pages.md are determined in the Figma designs (T1.1.2.2, T1.2.2.2) | T1.2.2.2 | Decided |
+| DEC-006 | Placement of trust content: safety, instructors, educational benefits, policies; what "policies" contain | overview §1.4. Placed on PAGE-001. What the policies contain is added in the Figma design and the page content (T1.2.2.2) | T1.1.2.2 | Decided |
 | DEC-007 | Purpose and content of PAGE-009 کارن و کیانا | pages.md: "صفحه ی اختصاصی" only | T1.1.3.1 | Decided |
 | DEC-008 | Meaning and scope of "GEO" | overview §2.2 "Basic SEO & GEO" | T1.6.4.2 | Pending |
 | DEC-009 | Request and contact mechanism: online form or contact channels; where submissions go | PAGE-011 "نحوه ی درخواست جلسه"; overview §1.6 | T1.2.2.1 | Decided |
-| DEC-010 | Which social and messaging channels to display | Filtering policy confirmed 2026-10-29: links to filtered platforms are allowed; do not embed them; visitors use their own VPN. The channel list is still open. iran-constraints §7 | T1.2.2.2 | Pending |
+| DEC-010 | Which social and messaging channels to display | Filtering policy (2026-10-29): links to filtered platforms are allowed; do not embed them; visitors use their own VPN. iran-constraints §7. The phone number, SMS number, and Instagram and Aparat addresses are set in the Figma designs (T1.2.2.2) | T1.2.2.2 | Decided |
 | DEC-011 | Video hosting for PAGE-007 and PAGE-010 | Direction on 2026-10-29, not decided: Aparat, and possibly a storage server. YouTube is filtered | T1.1.4.3 | Pending |
-| DEC-012 | Official brand name (fa/en), logo, brand assets; review of LEGO trademark use in name, logo, domain (including "خانه لگو") | pages.md PAGE-011 mentions "خانه لگو" | T1.2.1.1 | Pending |
+| DEC-012 | Official brand name (fa/en), logo, brand assets; review of LEGO trademark use in name, logo, domain (including "خانه لگو") | pages.md PAGE-011 mentions "خانه لگو". Name decided; logo, assets, and the trademark review are not | T1.2.1.1 | Decided |
 | DEC-013 | Consent policy for publishing photos, videos, and projects of children | PAGE-006, PAGE-007 | T1.1.4.3 | Decided |
-| DEC-014 | Content ownership and update workflow: who provides fa/en content; who updates prices, events, courses after launch, and how often | A-2, A-3. Price display format is DEC-015 | T1.1.4.1 | Pending |
+| DEC-014 | Content ownership and update workflow: who provides fa/en content; who updates prices, events, courses after launch, and how often | A-2, A-3. Price display format is DEC-015. Who authors the original content is still open | T1.1.4.1 | Decided |
 | DEC-015 | Price display: Toman or Rial, formatting, update approach | PAGE-002, PAGE-010; inflation; redenomination. Who updates prices, and how often, stays in DEC-014 | T1.2.2.2 | Decided |
 | DEC-016 | Technology stack (framework, styling, i18n, build) | Deferred until needed | T1.3.1.1 | Pending |
 | DEC-017 | Content management approach (files in the repository, headless CMS, or admin panel) | Depends on DEC-014 | T1.3.1.1 | Pending |
@@ -44,10 +44,46 @@ Every pending or decided project decision has a DEC-ID. Documents reference deci
 | DEC-032 | Scheduling of PAGE-005 and PAGE-015 | pages.md: Phase TBD | T1.8.3.3 | Pending |
 | DEC-033 | Coverage and test suite health targets | testing-strategy §10.2–10.3 | T1.3.4.1 | Pending |
 | DEC-034 | Testing access inside Iran: who tests on Iranian mobile and fixed networks without a VPN, which physical devices are available, and whether a test runner or server inside Iran is provided | testing-strategy §4.10, §7.1; T1.7.2.2; iran-constraints §9 | T1.3.5.2 | Pending |
+| DEC-035 | Slug language: localized slugs, or English slugs for both locales | T1.1.3.2. DEC-002 already fixes full parity, Persian at the site root, and English under `/en/`. Proposal: localized slugs (Option A). Not approved. Final spelling of each slug stays with the page's Figma design (T1.2.2.2) | T1.1.3.2 | Pending |
 
 ## Decision Records
 
-Confirmed by the user on 2026-10-29. DEC-006, DEC-010, and DEC-011 were not confirmed and stay Pending (see the register).
+Confirmed by the user on 2026-10-29, with further decisions on 2026-11-02 (including DEC-014). DEC-011 stays Pending.
+
+### DEC-002 — English has full parity; `/en/` subdirectory
+- **Status:** Decided (2026-11-02)
+- **Decision:** The English version has the same pages and features as the Persian version. English URLs use a subdirectory, for example `domain.ir/en/`. Persian stays the default at the site root, with no locale prefix, because only the English subdirectory was specified. Every Persian page has an English counterpart. This decision does not choose the slug language; that is DEC-035 (Pending). After DEC-035 is approved, the final spelling of each slug is created with that page's Figma design (T1.2.2.2).
+- **Rationale:** User, 2026-11-02: "Full parity. English version contain all same pages and features. For URL structure, we will use subdirectory. Something like domain.ir/en/." User, 2026-11-02: the final slug text for each PAGE-ID is created with that page's Figma design.
+- **Alternatives considered:** An English subset; a separate domain or subdomain.
+- **Documents updated:** phase-1-mvp.md, development-plan.md, testing-strategy.md, test-plan.md, README.md, pages.md.
+
+### DEC-035 — Slug language convention
+- **Status:** Pending. This is a proposal, not a decision.
+- **Proposal:** Option A, localized slugs. A Persian page uses a Persian slug. Its English counterpart uses an English slug. Example: `/معرفی-خدمات/` and `/en/services/`.
+- **Why this proposal:** Persian is the default language and the primary audience searches in Persian, so a Persian slug matches those queries and is readable when the browser shows the path. English readers get an English slug under `/en/`. Full parity already requires a counterpart page, so a second slug is the same pair, not a new page. Option B (English slugs on both locales) is simpler to type and to keep stable, and it avoids Unicode paths, which some clients show percent-encoded. It is the weaker match for a Persian-first site. The proposal does not approve the spelling of any slug. After approval, each page's Figma design sets the final spelling (user, 2026-11-02; T1.2.2.2).
+- **Alternatives considered:** Option B, English slugs for both locales, for example `/services/` and `/en/services/`.
+- **Documents updated:** pages.md, phase-1-mvp.md.
+
+### DEC-006 — Trust content on the landing page
+- **Status:** Decided (2026-11-02)
+- **Decision:** Safety, instructors, educational benefits, and policies are sections of the landing page (PAGE-001), not separate pages. What the policies contain is added in the Figma design and the page content (T1.2.2.2). This belongs to T1.1.2.2 and is carried out in that design.
+- **Rationale:** User, 2026-11-02: "We will have those down in landing page." "Those" is the trust content in this decision. "Down in" is recorded as on PAGE-001; the exact position on the page is for the design. User, 2026-11-02: what the policies contain is added in the Figma design and the page content.
+- **Alternatives considered:** A separate trust or policies page (rejected).
+- **Documents updated:** pages.md, phase-1-mvp.md.
+
+### DEC-010 — Instagram, Aparat channel, and SMS
+- **Status:** Decided (2026-11-02)
+- **Decision:** The channels to display are Instagram, an Aparat channel, and SMS. Instagram is linked, not embedded; it is filtered in Iran, and visitors who open it use their own VPN (policy of 2026-10-29). The Aparat channel is a link to the center's channel. It does not decide how page videos are hosted (that is still DEC-011). SMS is a contact method, not an embedded widget. The phone number, the SMS number, and the Instagram and Aparat addresses are set in the Figma designs (T1.2.2.2).
+- **Rationale:** User, 2026-11-02: "Instagram, Aparat channel, SMS text messages." User, 2026-11-02: the phone number, SMS number, and Instagram and Aparat channel are set in the Figma designs.
+- **Alternatives considered:** Omitting filtered platforms; domestic messengers only.
+- **Documents updated:** iran-constraints.md, phase-1-mvp.md, pages.md, testing-strategy.md, test-plan.md.
+
+### DEC-012 — Brand name Karoandishe
+- **Status:** Decided (2026-11-02)
+- **Decision:** The official brand name is Karoandishe, in the spelling given. It is subject to change. If it changes, update this record and the name used in copy, the domain, and brand assets. No Persian spelling was given. Logo, other brand assets, and a review of LEGO trademark use in the logo or domain were not provided. "خانه لگو" on PAGE-011 is not the official name. The name Karoandishe does not contain "LEGO"; the trademark check for a logo or domain is still open (DEC-019 for the domain).
+- **Rationale:** User, 2026-11-02: "Official brand name is Karoandishe, and subjected to change. In case that changes, we will take necessary actions."
+- **Alternatives considered:** Leaving the name unset until logo and trademark review were finished.
+- **Documents updated:** development-plan.md, README.md, iran-constraints.md, phase-1-mvp.md.
 
 ### DEC-001 — One PAGE-014, linked from other pages
 - **Status:** Decided (2026-10-29)
@@ -72,8 +108,8 @@ Confirmed by the user on 2026-10-29. DEC-006, DEC-010, and DEC-011 were not conf
 
 ### DEC-005 — Sections on existing pages; events are not live
 - **Status:** Decided (2026-10-29)
-- **Decision:** Events, competitions, achievements, and children's projects are sections of existing pages. They do not get new pages or PAGE-IDs. Events are not live in the MVP. Which existing page holds each section, where pages.md does not already name it, is settled in the sitemap (T1.1.3.1).
-- **Rationale:** User, 2026-10-29: those sections "will place in that existing page without any separate page and PAGE-IDs. The events are not live in MVP."
+- **Decision:** Events, competitions, achievements, and children's projects are sections of existing pages. They do not get new pages or PAGE-IDs. Events are not live in the MVP. Events are already named on PAGE-001, and children's projects are already named on PAGE-006 ([pages.md](pages.md)). Competitions, achievements, and the rest of the DEC-005 and DEC-006 sections are determined in the Figma designs. That work belongs to T1.1.2.2 and is carried out in T1.2.2.2.
+- **Rationale:** User, 2026-10-29: those sections "will place in that existing page without any separate page and PAGE-IDs. The events are not live in MVP." User, 2026-11-02: the pages or sections from DEC-005 and DEC-006 belong to T1.1.2.2, and those sections are determined in the Figma designs.
 - **Alternatives considered:** New PAGE-IDs for each topic.
 - **Documents updated:** pages.md, phase-1-mvp.md, phase-3-booking.md.
 
@@ -96,12 +132,19 @@ Confirmed by the user on 2026-10-29. DEC-006, DEC-010, and DEC-011 were not conf
 - **Decision:** In the MVP, photos, videos, and children's project work may be published publicly only after the necessary permissions have been obtained.
 - **Rationale:** User, 2026-10-29: they "may be published publicly only after the necessary permissions have been obtained."
 - **Alternatives considered:** Publishing without a permission step (rejected).
-- **Remaining detail:** Who grants permission, and how the permission is recorded, was not specified. That is settled while collecting media (T1.1.4.3), not by inventing a process here.
+- **Remaining detail:** Who grants permission, and how the permission is recorded, was not specified in this decision. Media collection under T1.1.4.3 is done (user, 2026-11-02); consent for children's projects was recorded as part of that collection. No grantor, process, or form is defined here.
 - **Documents updated:** iran-constraints.md, phase-1-mvp.md, development-plan.md, README.md.
+
+### DEC-014 — Developer updates content when needed
+- **Status:** Decided (2026-11-02)
+- **Decision:** After launch, a developer is available to update the site when needed, including prices, events, courses, and other content. Updates are done on demand, not on a fixed schedule. Who authors or supplies the original Persian and English copy, photos, videos, prices, and schedules was not specified; A-2 stays to be confirmed separately. How often content actually changes was not specified; A-3 stays to be verified after launch. The content-management approach (files in the repository, CMS, or admin panel) remains DEC-017; it must be workable for a developer.
+- **Rationale:** User, 2026-11-02: "There is a developer available for those purposes when needed even after launch."
+- **Alternatives considered:** Center staff updating through an admin panel without a developer (not chosen here; DEC-017 is still open).
+- **Documents updated:** development-plan.md, phase-1-mvp.md, testing-strategy.md, test-plan.md.
 
 ### DEC-015 — Prices in Toman
 - **Status:** Decided (2026-10-29)
-- **Decision:** Prices are shown in Toman. Two accepted forms, as given: `5میلیون تومان` and `5,000,000 تومان`. Who updates prices, and how often, remains DEC-014.
+- **Decision:** Prices are shown in Toman. Two accepted forms, as given: `5میلیون تومان` and `5,000,000 تومان`. After launch, a developer applies price updates when needed (DEC-014).
 - **Rationale:** User, 2026-10-29: "We will use Toman in this format for instance: 5میلیون تومان or 5,000,000 تومان."
 - **Alternatives considered:** Rial as the displayed unit.
 - **Documents updated:** phase-1-mvp.md, iran-constraints.md.

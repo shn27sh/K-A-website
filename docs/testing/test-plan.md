@@ -1,6 +1,6 @@
 # Master Test Plan
 
-> **Status:** Draft — proposals require approval · **Last updated:** 2026-10-29
+> **Status:** Draft — proposals require approval · **Last updated:** 2026-11-02
 > Strategy: [testing-strategy.md](testing-strategy.md) · Roadmap: [development-plan.md](../development-plan.md) · Requirements: [project-overview.md](../project/project-overview.md), [pages.md](../project/pages.md) · Phase 1: [phase-1-mvp.md](../phases/phase-1-mvp.md) · Decisions: [decisions.md](../project/decisions.md) · Constraints: [iran-constraints.md](../project/iran-constraints.md)
 
 This plan defines **what** is tested, **when**, **by whom**, and against **which criteria**, from Phase 1 through Phase 4. **How** testing is done (test types, tools, pyramid, coverage targets) is defined in the [testing strategy](testing-strategy.md) and is not repeated here. Tasks and their checkboxes stay in the phase documents.
@@ -59,7 +59,7 @@ Feature IDs are those in [phase-1-mvp.md](../phases/phase-1-mvp.md).
 | Localization foundation | F1.3.3 locale routing, text direction, language switcher, locale utilities, self-hosted Vazirmatn and Inter (DEC-023) |
 | Design system and shell | F1.4.1 tokens, F1.4.2 shared components, F1.4.3 header, navigation, footer, page template, 404 |
 | Pages | F1.5.1–F1.5.12: PAGE-001, 002, 003, 004, 006, 007, 008, 009, 010, 011, 012, 013, 014 |
-| Integrations | F1.6.1 map (Google Maps, Neshan, and Balad; DEC-022), F1.6.3 analytics, F1.6.4 SEO and GEO; video (DEC-011); social links (DEC-010). F1.6.2 is not needed (DEC-009): no form |
+| Integrations | F1.6.1 map (Google Maps, Neshan, and Balad; DEC-022), F1.6.3 analytics, F1.6.4 SEO and GEO; video (DEC-011); social links: Instagram (a link only), an Aparat channel, and SMS (DEC-010). F1.6.2 is not needed (DEC-009): no form |
 | Non-functional | Performance, accessibility, browser and device compatibility, security hardening (F1.7.3), reachability from Iran |
 | Delivery | F1.3.4 CI, F1.3.5 environments and domain, F1.8.1 production, rollback, F1.8.3 monitoring |
 | Content | Accuracy of prices, hours, contact details; Persian copy quality; children's media published only after permission (DEC-013); content publishing path (DEC-017) |
@@ -147,7 +147,7 @@ Columns: **U** unit · **I** integration and component · **E2E** end-to-end jou
 | F1.6.1 Map and location | High | High | High | — | P1 | P1 | P3 | P2 | P1 | P2 | P1 | P2 | P1 |
 | F1.6.2 Request form | — | — | Not needed (DEC-009) | — | — | — | — | — | — | — | — | — | — |
 | Video embeds (DEC-011) | Medium | Medium | Medium | — | P2 | P3 | — | P2 | P2 | P2 | P2 | — | P1 |
-| Social links (DEC-010) | Low | Low | Low | — | — | P3 | — | — | — | P3 | — | — | P2 |
+| Social links: Instagram (link only), Aparat channel, SMS (DEC-010) | Low | Low | Low | — | — | P3 | — | — | — | P3 | — | — | P2 |
 | F1.6.3 Analytics | Medium | Medium | Medium | — | P2 | P3 | — | P2 | P2 | — | — | — | P1 |
 | F1.6.4 Technical SEO (T1.6.4.1) | Medium | Medium | Medium | P2 | P2 | — | — | — | — | — | — | P2 | — |
 | F1.6.4 GEO (T1.6.4.2) | [TBD: DEC-008] | [TBD] | [TBD] | [TBD] | [TBD] | [TBD] | [TBD] | [TBD] | [TBD] | [TBD] | [TBD] | [TBD] | [TBD] |
@@ -337,7 +337,7 @@ Team composition is not defined ([strategy §13.3](testing-strategy.md#133-open-
 | QA lead | Owns this plan; triage; test reports; release readiness recommendation | [TBD] |
 | Developers | Write and maintain automated tests with the code; keep CI green; fix defects | [TBD] |
 | Designer | Contrast, states, focus, RTL and LTR variants in Figma | [TBD] |
-| Content owner (the center) | Confirms prices, hours, contact details, and media consent; acceptance sign-off | [TBD: DEC-014] |
+| Content owner (the center) | Confirms prices, hours, contact details, and media consent at acceptance; a developer applies updates after launch when needed (DEC-014) | [TBD] |
 | Iran network tester | Checks without VPN on Iranian networks and devices | [TBD: DEC-034] |
 | Accessibility reviewer | Manual keyboard and screen reader checks in Persian | [TBD] |
 | Release approver | Approves production releases | [TBD: T1.8.1.2] |
@@ -490,7 +490,7 @@ Testing risks in general: [strategy §12](testing-strategy.md#12-risks-and-mitig
 | Coverage targets | Gate G1 thresholds | DEC-033 | Pending |
 | Testing access in Iran | Test cycle 5 | DEC-034 | Pending |
 | Hosting, staging, deployment path | Test cycles 4, 5, 7 | DEC-018, DEC-020; T1.3.5.2 | Pending |
-| English scope | Size of every test run | DEC-002 | Pending |
+| English scope | Size of every test run | DEC-002, DEC-035 | Decided for parity (DEC-002, 2026-11-02): every in-scope page has an English counterpart, so the matrix covers both locales. Slug language is pending (DEC-035): localized slugs are proposed, not approved. After approval, the final spelling of each slug is created with that page's Figma design (T1.2.2.2) |
 | Content management | Regression policy for content | DEC-017 | Pending |
 | Request form | F1.6.2 tests | DEC-009 | Not needed (decided 2026-10-29): no form. Journey 3 uses contact channels on PAGE-011 |
 | Map providers | Allowlist entries and fallback tests | DEC-022 | Decided (2026-10-29): Google Maps, Neshan, and Balad. Google Maps may fail without a VPN |
@@ -501,7 +501,7 @@ Testing risks in general: [strategy §12](testing-strategy.md#12-risks-and-mitig
 
 ## 18. Assumptions and Open Questions
 
-**Assumptions** (registered in development-plan §11): A-1 mostly mobile visitors in Iran; A-2 the center provides all content; A-3 frequent content changes; A-4 the MVP stores no personal data, because there is no form (DEC-009); A-6 mostly pre-rendered pages; A-7 GitHub hosts the repository and GitHub Actions runs CI. This plan adds no new assumptions. Unknowns are placeholders instead.
+**Assumptions** (registered in development-plan §11): A-1 mostly mobile visitors in Iran; A-2 who supplies original content is still open (DEC-014 only decided that a developer updates the site when needed); A-3 frequency of content change is unverified (when changes are needed, a developer applies them per DEC-014); A-4 the MVP stores no personal data, because there is no form (DEC-009); A-6 mostly pre-rendered pages; A-7 GitHub hosts the repository and GitHub Actions runs CI. This plan adds no new assumptions. Unknowns are placeholders instead.
 
 **Open questions**
 
