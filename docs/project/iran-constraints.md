@@ -1,6 +1,6 @@
 # Iran Constraints
 
-> **Status:** Living document · **Last reviewed:** 2026-10-26
+> **Status:** Living document · **Last reviewed:** 2026-10-29
 > Filtering, sanctions, and regulations change often. Re-verify every item when the related decision is made. Legal items require confirmation by a local expert.
 
 ## 1. Connectivity
@@ -11,7 +11,7 @@
 
 **Implications:**
 - Host inside Iran (DEC-018) so the site stays reachable during disruptions.
-- No runtime dependency on foreign-hosted resources: fonts, CDNs, scripts, embeds, captchas, maps, analytics. Requests to blocked domains can also stall page loading.
+- No runtime dependency on foreign-hosted resources (fonts, CDNs, scripts, embeds, captchas, analytics) unless approved in `decisions.md`. Google Maps is an approved exception (DEC-022) and may not load without a VPN; Neshan, Balad, and a static fallback still cover the location. Requests to blocked domains can also stall page loading.
 - If the English audience is outside Iran, check reachability and speed from abroad too (DEC-002).
 
 ## 2. Sanctions and Foreign Services
@@ -45,7 +45,7 @@ Evaluation points: reachability inside and outside Iran; static hosting, object 
 
 - **Samandehi (ساماندهی):** registration of Iranian websites; confirm whether it applies.
 - **eNamad (نماد اعتماد الکترونیکی):** required by most payment gateways (Phase 4); prerequisites include business documents and verified contact details.
-- **Children's images:** consent policy (DEC-013).
+- **Children's images:** photos, videos, and children's project work may be published publicly only after the necessary permissions have been obtained (DEC-013).
 - **Online sales:** invoicing and tax obligations (Phase 4).
 - **Personal data:** collect the minimum; store in Iran.
 
@@ -58,19 +58,19 @@ Evaluation points: reachability inside and outside Iran; static hosting, object 
 | Text | Normalize ي/ك to ی/ک; preserve نیم‌فاصله (ZWNJ) |
 | Calendar | Solar Hijri (Jalali) dates; week starts on Saturday; Friday is the weekend; official holidays include lunar dates that shift every year |
 | Time zone | Asia/Tehran, UTC+03:30; daylight saving time abolished from 2023 — keep time zone data up to date |
-| Currency | Rial is official; prices are commonly shown in Toman (10 Rials); a redenomination has been in the legislative process — verify; inflation causes frequent price changes |
+| Currency | Display is Toman; formats are in DEC-015. Rial is official (10 Rials = 1 Toman). A redenomination has been in the legislative process — verify; inflation causes frequent price changes |
 | Phone numbers | Mobile `09xx xxx xxxx` / `+98 9xx xxx xxxx`; landlines with area codes |
 | Addresses | Persian address format; 10-digit postal code |
-| Fonts | Persian web fonts, e.g., Vazirmatn (open license) or licensed commercial fonts; confirm web licensing (DEC-023) |
+| Fonts | Persian: Vazirmatn. Latin: Inter. Both are self-hosted, not loaded from a font service (DEC-023) |
 
 ## 7. Third-Party Services by Area
 
 | Area | Concern | Options to evaluate | Phase |
 |---|---|---|---|
-| Maps | Google Maps Platform requires international billing; availability varies | Neshan (نشان), Balad (بلد), Map.ir; OpenStreetMap-based maps; links to navigation apps (Neshan, Balad, Google Maps, Waze) | 1 |
+| Maps | Google Maps Platform requires international billing; availability varies, and it may not load in Iran without a VPN | Decided (DEC-022): Google Maps, Neshan (نشان), and Balad (بلد), plus a static fallback. Neshan and Balad cover visitors without a VPN | 1 |
 | Analytics | Foreign tools may be unreliable to load or manage from Iran; data stored abroad | Self-hosted analytics (e.g., Umami, Matomo) on Iranian hosting; Iranian services | 1 |
-| Video | YouTube filtered | Aparat (آپارات) embeds; self-hosted video | 1 |
-| Social and messaging | Instagram and Telegram filtered but widely used; WhatsApp accessible since late 2024 (verify); domestic messengers (Eitaa, Bale, Rubika) | Link to channels; do not embed filtered platforms | 1 |
+| Video | YouTube filtered | Direction, not decided (DEC-011): Aparat (آپارات), and possibly self-hosted storage | 1 |
+| Social and messaging | Instagram and Telegram filtered but widely used; WhatsApp accessible since late 2024 (verify); domestic messengers (Eitaa, Bale, Rubika). DEC-010 is still pending for which channels | Linking filtered platforms is allowed; visitors use their own VPN. Do not embed them | 1 |
 | Spam protection | Google reCAPTCHA unreliable | Honeypot fields, rate limiting, self-hosted captcha | 1 |
 | Fonts and CDNs | Foreign font services and public CDNs may be slow or blocked | Self-host all assets | 1 |
 | Email | Deliverability from Iranian servers to international mailbox providers may be poor | Test deliverability; consider SMS or messaging notifications | 1, 3 |

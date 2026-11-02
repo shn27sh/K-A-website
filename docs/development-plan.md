@@ -140,8 +140,8 @@ Phases are numbered in their intended order. Phase 2's timeline is not determine
 |---|---|---|
 | Technology stack and hosting (DEC-016, DEC-018) | 1 → 3, 4 | Phases 3–4 need server-side logic and data storage. Evaluate in Phase 1 whether the choice can be extended or cleanly paired with a separate backend; do not build it in Phase 1 |
 | LEGO set data (DEC-028) | 1, 2, 3 | PAGE-003 introduces sets (Phase 1), the album lists them (Phase 2), set-construction booking reserves them (Phase 3) |
-| Workshop capacity (DEC-004) | 1 → 3 | Static in Phase 1 (if shown); live in Phase 3 |
-| Purchases (DEC-003, DEC-031) | 1 → 4 | PAGE-013/014 without online payment in Phase 1; online sales in Phase 4 |
+| Workshop capacity (DEC-004) | 1 → 3 | Static in Phase 1 (DEC-004, confirmed); live in Phase 3 |
+| Purchases (DEC-003, DEC-031) | 1 → 4 | Offline instructions on PAGE-013/014 in Phase 1 (DEC-003); online sales in Phase 4 |
 | Domain registrant and published business details (DEC-019) | 1 → 4 | eNamad and payment gateways check these; verify requirements before registering the domain |
 | Iran-hosted server | 1 → 4 | Iranian payment gateways commonly require requests from Iranian IPs (verify) |
 | Post-MVP PAGE-IDs | 2–4 | To be added to `pages.md` when each phase is detailed |
@@ -156,7 +156,7 @@ Full details: [iran-constraints.md](project/iran-constraints.md).
 
 - Many foreign platforms are filtered, and international connectivity has been severely restricted at times; domestically hosted services generally stayed reachable.
 - Sanctions limit access to many foreign services and to international payment methods.
-- Fonts, scripts, maps, analytics, videos, and captchas must work without foreign-hosted resources.
+- Fonts, scripts, analytics, videos, and captchas must work without foreign-hosted resources. Maps follow DEC-022: Google Maps is an approved exception and may not load without a VPN; Neshan, Balad, and a static fallback cover visitors in Iran.
 - Local conventions: Persian digits, Solar Hijri (Jalali) calendar, Asia/Tehran time zone, Rial/Toman.
 - Legal and merchant processes (for example Samandehi, eNamad, gateway contracts) have their own prerequisites and lead times.
 - Testing must happen on Iranian networks without a VPN.
@@ -191,7 +191,7 @@ The application structure is defined in T1.3.2.1 and documented here once decide
 | A-1 | Most visitors access the site from inside Iran, largely on mobile devices | To verify with analytics after launch |
 | A-2 | The center provides all text, photos, videos, prices, and schedules | To confirm in DEC-014 |
 | A-3 | After launch, prices, events, and courses change more often than other content | To confirm in DEC-014 |
-| A-4 | The MVP stores no personal data, except form submissions if DEC-009 selects a form | Follows from Phase 1 scope |
+| A-4 | The MVP stores no personal data, because DEC-009 decided there is no form | Confirmed (DEC-009, 2026-10-29) |
 | A-5 | Phase 2, being an independent project, may follow its own timeline | To confirm in DEC-027 |
 | A-6 | Phase 1 is mostly pre-rendered pages with little client-side logic, so test risk concentrates in content, layout, localization, integrations, and delivery ([testing-strategy.md](testing/testing-strategy.md) §1.3) | To verify with DEC-016 |
 | A-7 | GitHub hosts the repository and GitHub Actions runs CI | In use since 2026-10-26; confirm in DEC-020 |
@@ -207,7 +207,7 @@ The application structure is defined in T1.3.2.1 and documented here once decide
 | Open decisions block design | Design delay | Resolve in S1.1; track in register | T1.1.2.1 |
 | Price volatility from inflation | Outdated prices on the site | Easy update path; agreed price format | DEC-014, DEC-015, DEC-017 |
 | Use of the LEGO trademark in name, logo, or domain | Forced rebrand or domain loss | Review before brand and domain decisions | DEC-012, DEC-019 |
-| Publishing children's images | Privacy and reputational harm | Consent policy before collecting media | DEC-013 |
+| Publishing children's images | Privacy and reputational harm | Publish only after the necessary permissions have been obtained (DEC-013) | DEC-013 |
 | Bilingual effort underestimated | Doubles content, design, and QA work | Define English scope early | DEC-002 |
 | Unknown album integration | Rework in Phase 2 | Define the integration contract when Phase 2 starts | DEC-027 |
 | Post-MVP scope entering Phase 1 | MVP delay | MVP discipline; explicit decision required | §5 |

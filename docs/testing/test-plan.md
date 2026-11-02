@@ -1,6 +1,6 @@
 # Master Test Plan
 
-> **Status:** Draft — proposals require approval · **Last updated:** 2026-10-27
+> **Status:** Draft — proposals require approval · **Last updated:** 2026-10-29
 > Strategy: [testing-strategy.md](testing-strategy.md) · Roadmap: [development-plan.md](../development-plan.md) · Requirements: [project-overview.md](../project/project-overview.md), [pages.md](../project/pages.md) · Phase 1: [phase-1-mvp.md](../phases/phase-1-mvp.md) · Decisions: [decisions.md](../project/decisions.md) · Constraints: [iran-constraints.md](../project/iran-constraints.md)
 
 This plan defines **what** is tested, **when**, **by whom**, and against **which criteria**, from Phase 1 through Phase 4. **How** testing is done (test types, tools, pyramid, coverage targets) is defined in the [testing strategy](testing-strategy.md) and is not repeated here. Tasks and their checkboxes stay in the phase documents.
@@ -56,13 +56,13 @@ Feature IDs are those in [phase-1-mvp.md](../phases/phase-1-mvp.md).
 
 | Area | Features |
 |---|---|
-| Localization foundation | F1.3.3 locale routing, text direction, language switcher, locale utilities, self-hosted fonts |
+| Localization foundation | F1.3.3 locale routing, text direction, language switcher, locale utilities, self-hosted Vazirmatn and Inter (DEC-023) |
 | Design system and shell | F1.4.1 tokens, F1.4.2 shared components, F1.4.3 header, navigation, footer, page template, 404 |
 | Pages | F1.5.1–F1.5.12: PAGE-001, 002, 003, 004, 006, 007, 008, 009, 010, 011, 012, 013, 014 |
-| Integrations | F1.6.1 map, F1.6.2 request handling (only if DEC-009 selects a form), F1.6.3 analytics, F1.6.4 SEO and GEO; video (DEC-011); social links (DEC-010) |
+| Integrations | F1.6.1 map (Google Maps, Neshan, and Balad; DEC-022), F1.6.3 analytics, F1.6.4 SEO and GEO; video (DEC-011); social links (DEC-010). F1.6.2 is not needed (DEC-009): no form |
 | Non-functional | Performance, accessibility, browser and device compatibility, security hardening (F1.7.3), reachability from Iran |
 | Delivery | F1.3.4 CI, F1.3.5 environments and domain, F1.8.1 production, rollback, F1.8.3 monitoring |
-| Content | Accuracy of prices, hours, contact details; Persian copy quality; consent for children's media (DEC-013); content publishing path (DEC-017) |
+| Content | Accuracy of prices, hours, contact details; Persian copy quality; children's media published only after permission (DEC-013); content publishing path (DEC-017) |
 
 ### 2.2 In Scope — Post-MVP (Provisional)
 
@@ -80,6 +80,7 @@ Detailed when each phase starts. Feature IDs are those in the phase documents.
 |---|---|
 | Booking, payment, and user accounts in Phase 1 | Not part of the MVP (phase-1-mvp §3.3) |
 | PAGE-005, PAGE-015 | Unscheduled (DEC-032) |
+| Request form (F1.6.2) | Not needed (DEC-009, 2026-10-29): no form. Journey 3 uses contact channels on PAGE-011 |
 | Internals of the album project | Tested by that project (phase-2-album §3) |
 | Internals of third-party services (map, analytics, video, gateway) | Only the integration and fallbacks are tested |
 | Load testing and penetration testing in Phase 1 | Static content site ([strategy §2.2](testing-strategy.md#22-scope)). Load tests are planned for Phase 3; Phases 3–4 have security reviews (T3.6.1.2, T4.6.1.2), and T4.6.1.2 recommends an external review |
@@ -131,7 +132,7 @@ Columns: **U** unit · **I** integration and component · **E2E** end-to-end jou
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | F1.3.3 Locale routing, direction, language switcher (T1.3.3.1) | High | High | High | P1 | P1 | P1 | P2 | — | — | P1 | P1 | P1 | — |
 | F1.3.3 Locale utilities: digits, Solar Hijri dates, prices, normalization (T1.3.3.2) | High | High | High | P1 | P1 | P2 | — | — | — | — | — | P1 | — |
-| F1.3.3 Self-hosted fonts (T1.3.3.2) | Medium | Medium | Medium | — | P2 | — | P2 | — | P2 | — | P2 | P2 | P1 |
+| F1.3.3 Self-hosted fonts: Vazirmatn and Inter (T1.3.3.2, DEC-023) | Medium | Medium | Medium | — | P2 | — | P2 | — | P2 | — | P2 | P2 | P1 |
 | F1.4.3 Site shell: header, mobile menu, footer, 404 | Medium | Medium | Medium | — | P2 | P1 | P2 | — | — | P1 | P1 | P2 | — |
 | F1.4.2 Shared components: FAQ accordion, image viewer, cards, price display | Medium | Medium | Medium | P3 | P1 | P2 | P2 | — | — | P1 | P2 | P2 | — |
 | F1.5.1 PAGE-001 home | High | Medium | High | — | P2 | P1 | P2 | — | P1 | P1 | P1 | P1 | P1 |
@@ -140,11 +141,11 @@ Columns: **U** unit · **I** integration and component · **E2E** end-to-end jou
 | F1.5.7 PAGE-006 gallery | High | Medium | High | — | P2 | P2 | P2 | — | P1 | P1 | P1 | P1 | P1 |
 | F1.5.8 PAGE-007 about | Low | Low | Low | — | P3 | — | P3 | — | P3 | P3 | P3 | P3 | P3 |
 | F1.5.9 PAGE-008 contact | High | Medium | High | P2 | P2 | P1 | P2 | — | P2 | P1 | P1 | P1 | P1 |
-| F1.5.10 PAGE-009 کارن و کیانا | [TBD: DEC-007] | [TBD] | [TBD] | [TBD] | [TBD] | [TBD] | [TBD] | [TBD] | [TBD] | [TBD] | [TBD] | [TBD] | [TBD] |
+| F1.5.10 PAGE-009 کارن و کیانا | Medium | Low | Low | — | P3 | — | P3 | — | P3 | P3 | P3 | P3 | P3 |
 | F1.5.11 PAGE-011 collaboration | Medium | Medium | Medium | — | P3 | P1 | P3 | — | — | P2 | P2 | P2 | P2 |
 | F1.5.12 PAGE-012 FAQ | Medium | Medium | Medium | — | P2 | P2 | P3 | — | — | P1 | P2 | P2 | — |
 | F1.6.1 Map and location | High | High | High | — | P1 | P1 | P3 | P2 | P1 | P2 | P1 | P2 | P1 |
-| F1.6.2 Request form (only if DEC-009 selects one) | High | High | High | P1 | P1 | P1 | P3 | P1 | — | P1 | P1 | P1 | P1 |
+| F1.6.2 Request form | — | — | Not needed (DEC-009) | — | — | — | — | — | — | — | — | — | — |
 | Video embeds (DEC-011) | Medium | Medium | Medium | — | P2 | P3 | — | P2 | P2 | P2 | P2 | — | P1 |
 | Social links (DEC-010) | Low | Low | Low | — | — | P3 | — | — | — | P3 | — | — | P2 |
 | F1.6.3 Analytics | Medium | Medium | Medium | — | P2 | P3 | — | P2 | P2 | — | — | — | P1 |
@@ -158,7 +159,8 @@ Columns: **U** unit · **I** integration and component · **E2E** end-to-end jou
 Notes:
 - **Security hardening** is Medium risk but P1. The checks are cheap, and a failure could be Critical.
 - **Content publishing** values assume DEC-017 allows publishing without a pull request. If all content goes through pull requests, its I and L10n checks are already covered by the page rows.
-- **PAGE-009 and GEO** are rated after DEC-007 and DEC-008.
+- **PAGE-009** is a commercial content page (DEC-007): Low risk, same test types as other static content pages. **GEO** is rated after DEC-008.
+- **F1.6.2** is not needed (DEC-009, 2026-10-29): there is no form. Journey 3 uses contact channels on PAGE-011.
 
 ### 5.2 Phases 2–4 (Provisional)
 
@@ -182,7 +184,7 @@ Test names start with the PAGE-ID or task ID they verify ([strategy §3.3](testi
 | Feature | Requirement source | Acceptance criteria | Planned automated tests | Planned manual checks | Status |
 |---|---|---|---|---|---|
 | F1.3.3 Locale routing and direction | overview §2.2; DEC-002 | T1.3.3.1 | `lang`/`dir` per locale (integration); switcher destinations (E2E, journey 4); overflow per viewport (page sweep) | RTL review on real devices | Not started |
-| F1.3.3 Locale utilities and fonts | iran-constraints §6; DEC-015, DEC-023 | T1.3.3.2 | Table-driven unit tests; no external font requests (allowlist) | Typography review | Not started |
+| F1.3.3 Locale utilities and fonts | iran-constraints §6; DEC-015, DEC-023 | T1.3.3.2 | Table-driven unit tests; Vazirmatn and Inter, self-hosted (DEC-023); no external font requests (allowlist) | Typography review | Not started |
 | F1.4.1, F1.4.2 Tokens and components | Figma component inventory | T1.4.1.1, T1.4.2.1 | Component tests in both locales; axe per component; visual baselines | Keyboard and screen reader checks of interactive components | Not started |
 | F1.4.3 Site shell | Sitemap (T1.1.3.1) | T1.4.3.1–T1.4.3.3 | Navigation E2E; mobile menu keyboard and touch; 404 per locale | Device check of the mobile menu | Not started |
 | F1.5.1 PAGE-001 | pages.md PAGE-001 | T1.5.1.1 | Page sweep; journeys 1 and 3 start here | Content proofreading; exploratory session | Not started |
@@ -191,14 +193,14 @@ Test names start with the PAGE-ID or task ID they verify ([strategy §3.3](testi
 | F1.5.4 PAGE-004 | pages.md PAGE-004; DEC-001 | T1.5.4.1 | Page sweep; link to PAGE-014 (E2E, journey 5) | Content proofreading | Not started |
 | F1.5.5 PAGE-010 | pages.md PAGE-010; DEC-004 | T1.5.5.1 | Page sweep; journey 1; course data validation (integration) | Course data confirmed by the center | Not started |
 | F1.5.6 PAGE-013, 014 | pages.md PAGE-013, 014; DEC-001, DEC-003 | T1.5.6.1 | Page sweep; journey 5 | Purchase path reviewed by the center | Not started |
-| F1.5.7 PAGE-006 | pages.md PAGE-006; DEC-013 | T1.5.7.1 | Page sweep; image viewer keyboard (component); image performance budget | Consent check of every identifiable child; screen reader check | Not started |
+| F1.5.7 PAGE-006 | pages.md PAGE-006; DEC-013 | T1.5.7.1 | Page sweep; image viewer keyboard (component); image performance budget | Check that children's media was published only after permission (DEC-013); screen reader check | Not started |
 | F1.5.8 PAGE-007 | pages.md PAGE-007; DEC-011 | T1.5.8.1 | Page sweep | Content proofreading | Not started |
 | F1.5.9 PAGE-008 | pages.md PAGE-008; DEC-010, DEC-022 | T1.5.9.1 | Page sweep; journey 2; `tel:` links (E2E) | Contact details and hours confirmed by the center; tap test on phones | Not started |
-| F1.5.10 PAGE-009 | DEC-007 | T1.5.10.1 (blocked) | [TBD: after DEC-007] | [TBD: after DEC-007] | Blocked |
-| F1.5.11 PAGE-011 | pages.md PAGE-011; DEC-009 | T1.5.11.1 | Page sweep; journey 3 | Request path reviewed by the center | Not started |
+| F1.5.10 PAGE-009 | pages.md PAGE-009; DEC-007 | T1.5.10.1 | Page sweep | Content proofreading | Not started |
+| F1.5.11 PAGE-011 | pages.md PAGE-011; DEC-009 | T1.5.11.1 | Page sweep; journey 3 (contact channels on PAGE-011, no form) | Request path reviewed by the center | Not started |
 | F1.5.12 PAGE-012 | pages.md PAGE-012 | T1.5.12.1 | Page sweep; accordion keyboard (component); FAQ structured data matches visible FAQ (integration) | Screen reader check | Not started |
-| F1.6.1 Map | overview §2.2; DEC-022 | T1.6.1.1 | Fallback when the provider fails (integration); lazy loading (performance); allowlist | Map loads on Iranian networks without VPN | Not started |
-| F1.6.2 Request form | overview §1.6; DEC-009 | T1.6.2.1 | Validator partitions (unit); handler and delivery with fakes (integration); journey 3; rate limiting (security) | Real delivery to the test destination; spam probe | Not started (conditional) |
+| F1.6.1 Map | overview §2.2; DEC-022 | T1.6.1.1 | Three providers: Google Maps, Neshan, and Balad. Google Maps may fail without a VPN; Neshan, Balad, and the static fallback must still work (integration). Lazy loading (performance). Allowlist may include hosts approved in `decisions.md` | Neshan, Balad, and the static fallback work on Iranian networks without VPN | Not started |
+| F1.6.2 Request form | DEC-009 | T1.6.2.1 | Not needed: no form | Not needed | Not needed |
 | F1.6.3 Analytics | overview §2.2; DEC-021 | T1.6.3.1 | Disabled on staging (integration); allowlist; performance budget | Data received from an Iranian network | Not started |
 | F1.6.4 SEO, GEO | overview §2.2; DEC-008 | T1.6.4.1, T1.6.4.2 | Metadata per locale, canonical, hreflang reciprocity, sitemap, structured data (integration) | Search engine verification (T1.8.2.2) | Not started |
 | F1.7.1 Automated testing | overview §2.2.2 | T1.7.1.1–T1.7.1.3 | Journeys 1–5 once confirmed; accessibility scan of every page and locale in CI | — | Not started |
@@ -267,8 +269,8 @@ Older-version support is decided from market and analytics data (phase-1-mvp §7
 - Every account has a named owner and the least privilege needed.
 - Credentials live in GitHub Secrets (for CI) or [TBD: password manager — owner]. They never appear in the repository, test reports, screenshots, or defect reports.
 - Staging access is restricted (T1.7.3.2). Test access is removed when it is no longer needed and rotated when people change roles.
-- Tests never use production customer data or real payment cards. Form and notification tests send to dedicated test destinations, never to the center's real inbox or real visitors.
-- Defect reports and screenshots never include identifiable children unless consent is recorded (DEC-013).
+- Tests never use production customer data or real payment cards. Phase 1 has no form (DEC-009). Later notification tests send to dedicated test destinations, never to the center's real inbox or real visitors.
+- Defect reports and screenshots never include identifiable children unless the necessary permissions have been obtained (DEC-013).
 
 | Account or credential | Purpose | Phase | Storage | Owner | Status |
 |---|---|---|---|---|---|
@@ -277,8 +279,8 @@ Older-version support is decided from market and analytics data (phase-1-mvp §7
 | Staging access | Stakeholder review and testing | 1 | [TBD] | [TBD] | Not set up (T1.3.5.2) |
 | Hosting provider console | Deployment, logs | 1 | [TBD] | [TBD] | Not decided (DEC-018) |
 | Analytics administration | Verifying tracking | 1 | [TBD] | [TBD] | Not decided (DEC-021) |
-| Map provider key, if any | Map integration | 1 | GitHub Secrets or host configuration | [TBD] | Not decided (DEC-022) |
-| Form delivery test destination | Request form tests | 1 | [TBD] | [TBD] | Conditional (DEC-009) |
+| Map providers | Map integration | 1 | GitHub Secrets or host configuration, if a key is required | [TBD] | Decided (DEC-022): Google Maps, Neshan (نشان), and Balad (بلد). Whether a key is required is not specified |
+| Form delivery test destination | Request form tests | 1 | — | — | Not needed (DEC-009): no form |
 | Iranian SIM cards and ISP connections | Network testing without VPN | 1 | — | [TBD] | Not decided (DEC-034) |
 | Test visitor and staff accounts | Booking tests | 3 | Seeded per test run | [TBD] | Not designed (T3.2.1.1) |
 | SMS provider test mode | Notification tests | 3 | GitHub Secrets | [TBD] | Not decided (T3.2.1.2) |
@@ -304,7 +306,7 @@ Older-version support is decided from market and analytics data (phase-1-mvp §7
 | Staging is unavailable or unreachable from Iran | Staging is reachable and the smoke tests pass |
 | More than [TBD: number — QA lead] critical or high defects are open in the cycle | They are fixed and verified |
 | The build under test differs from the release candidate | A new candidate is deployed, and affected tests are repeated |
-| A blocking decision is unresolved (for example DEC-007 for PAGE-009) | The decision is recorded in `decisions.md` |
+| A blocking decision is unresolved (for example DEC-008 for GEO) | The decision is recorded in `decisions.md` |
 
 ## 10. Test Schedule
 
@@ -317,7 +319,7 @@ No dates are set. Development stages have no dates yet, and Phases 2–4 are not
 | S1.3 Technical foundation | 1 | DEC-025, DEC-033, DEC-034 decided; CI runs lint, types, unit tests, and build; staging smoke tests | [TBD] | [TBD] | Not started (documentation check active) |
 | S1.4 Design system and shell | 1, 2 | Page sweep and visual regression in CI | [TBD] | [TBD] | Not started |
 | S1.5 Page implementation | 1, 3 | Every page passes G3 | [TBD] | [TBD] | Not started |
-| S1.6 Integrations, SEO, analytics | 1, 3 | Integration tests for map, form, analytics, SEO | [TBD] | [TBD] | Not started |
+| S1.6 Integrations, SEO, analytics | 1, 3 | Integration tests for the map (three providers and fallback), analytics, and SEO. No form tests (DEC-009) | [TBD] | [TBD] | Not started |
 | S1.7 Quality assurance | 4, 5, 6 | System testing, Iran network testing, acceptance complete | [TBD] | [TBD] | Not started |
 | S1.8 Launch in Iran | 7, 8 | Go/no-go decision; production verified | [TBD: MVP launch date] | [TBD] | Not started |
 | Phase 2 | 1–8 as applicable | [TBD: DEC-027] | [TBD] | [TBD] | Not scheduled |
@@ -490,15 +492,16 @@ Testing risks in general: [strategy §12](testing-strategy.md#12-risks-and-mitig
 | Hosting, staging, deployment path | Test cycles 4, 5, 7 | DEC-018, DEC-020; T1.3.5.2 | Pending |
 | English scope | Size of every test run | DEC-002 | Pending |
 | Content management | Regression policy for content | DEC-017 | Pending |
-| Request mechanism | F1.6.2 tests, security scope | DEC-009 | Pending |
-| Map, video, analytics providers | Allowlist entries and fallback tests | DEC-022, DEC-011, DEC-021 | Pending |
+| Request form | F1.6.2 tests | DEC-009 | Not needed (decided 2026-10-29): no form. Journey 3 uses contact channels on PAGE-011 |
+| Map providers | Allowlist entries and fallback tests | DEC-022 | Decided (2026-10-29): Google Maps, Neshan, and Balad. Google Maps may fail without a VPN |
+| Video and analytics providers | Allowlist entries and fallback tests | DEC-011, DEC-021 | Pending |
 | Signed-off designs | Visual baselines, test cycle 2–3 entry | T1.2.2.3 | Not started |
 | Approved content | Test cycle 3 entry, acceptance | T1.1.4.2 | Not started |
 | Confirmed core journeys | E2E scope | T1.7.1.1 | Proposed |
 
 ## 18. Assumptions and Open Questions
 
-**Assumptions** (registered in development-plan §11): A-1 mostly mobile visitors in Iran; A-2 the center provides all content; A-3 frequent content changes; A-4 no personal data in the MVP except form submissions; A-6 mostly pre-rendered pages; A-7 GitHub hosts the repository and GitHub Actions runs CI. This plan adds no new assumptions. Unknowns are placeholders instead.
+**Assumptions** (registered in development-plan §11): A-1 mostly mobile visitors in Iran; A-2 the center provides all content; A-3 frequent content changes; A-4 the MVP stores no personal data, because there is no form (DEC-009); A-6 mostly pre-rendered pages; A-7 GitHub hosts the repository and GitHub Actions runs CI. This plan adds no new assumptions. Unknowns are placeholders instead.
 
 **Open questions**
 

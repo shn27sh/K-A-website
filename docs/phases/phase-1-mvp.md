@@ -17,19 +17,19 @@ From overview §1: present the center (§1.1); display activities and programs (
 
 | PAGE-ID | Page | Notes |
 |---|---|---|
-| PAGE-001 | صفحه ی اصلی | |
+| PAGE-001 | صفحه ی اصلی | Events are a section of this page and are not live in the MVP (DEC-005) |
 | PAGE-002 | معرفی خدمات | |
 | PAGE-003 | ساخت لگو | Set data relates to Phase 2–3 (DEC-028) |
-| PAGE-004 | کارگاه لگو بوست | Links to PAGE-014 (DEC-001) |
-| PAGE-006 | گالری | Consent policy: DEC-013 |
+| PAGE-004 | کارگاه لگو بوست | Links to PAGE-014; the Boost set is for sale (DEC-001) |
+| PAGE-006 | گالری | Children's photos, videos, and project work published only after permission (DEC-013) |
 | PAGE-007 | درباره ی ما | |
-| PAGE-008 | تماس با ما | Map: DEC-022 |
-| PAGE-009 | کارن و کیانا | Content undefined (DEC-007) |
-| PAGE-010 | معرفی دوره های کارگاهی | Capacity: DEC-004 |
-| PAGE-011 | همکاری | Request mechanism: DEC-009 |
+| PAGE-008 | تماس با ما | Google Maps, Neshan (نشان), and Balad (بلد) (DEC-022) |
+| PAGE-009 | کارن و کیانا | Two AI characters who introduce the center; commercial content; its own page (DEC-007) |
+| PAGE-010 | معرفی دوره های کارگاهی | Fixed capacity, entered by hand, not automatic (DEC-004) |
+| PAGE-011 | همکاری | Contact channels; no online form (DEC-009) |
 | PAGE-012 | پرسش های متداول | |
-| PAGE-013 | فروش | Purchase method without online payment: DEC-003 |
-| PAGE-014 | ست لگو بوست | Listed under both PAGE-004 and PAGE-013 (DEC-001) |
+| PAGE-013 | فروش | Offline purchase by phone or in-person visit; no checkout (DEC-003) |
+| PAGE-014 | ست لگو بوست | One page, linked from PAGE-004 and PAGE-013 (DEC-001); offline purchase (DEC-003) |
 
 ### 3.2 In Scope — Cross-Cutting
 
@@ -143,7 +143,7 @@ All MVP requirements in overview §2.2 (see §4).
 - **Subtasks:**
   - [ ] Page structure: DEC-001, DEC-005, DEC-006, DEC-007
   - [ ] Language scope: DEC-002
-  - [ ] MVP behavior: DEC-003, DEC-004, DEC-009
+  - [x] MVP behavior: DEC-003, DEC-004, DEC-009
   - [ ] Channels and brand: DEC-010, DEC-012
   - [ ] Content policy: DEC-013, DEC-014, DEC-015
 
@@ -154,9 +154,9 @@ All MVP requirements in overview §2.2 (see §4).
 - **Depends on:** T1.1.2.1
 - **Acceptance criteria:** Each PAGE-ID is defined exactly once (other mentions are explicit cross-references); every MVP page has a content list; PAGE-009 is described; new pages use the next free ID (PAGE-017 onward) without renumbering.
 - **Subtasks:**
-  - [ ] Resolve PAGE-014 placement (DEC-001)
-  - [ ] Add pages or sections from DEC-005 and DEC-006
-  - [ ] Describe PAGE-009 (DEC-007)
+  - [x] Resolve PAGE-014 placement (DEC-001)
+  - [ ] Add pages or sections from DEC-005 and DEC-006. DEC-005 is recorded: these are sections of existing pages, not new PAGE-IDs, and events are not live in the MVP. Competitions and achievements are not placed on a page yet (T1.1.3.1). DEC-006 is still Pending.
+  - [x] Describe PAGE-009 (DEC-007)
 
 #### F1.1.3 — Information Architecture
 
@@ -226,7 +226,7 @@ All MVP requirements in overview §2.2 (see §4).
 - **Depends on:** T1.2.1.1, DEC-023, DEC-024
 - **Acceptance criteria:** Variables defined and used consistently; Persian and Latin text styles defined; mobile, tablet, and desktop breakpoints defined; text/background color pairs meet the contrast level in DEC-024; font web licenses confirmed and files available for self-hosting.
 - **Subtasks:**
-  - [ ] Typography (fa and Latin)
+  - [ ] Typography: Vazirmatn and Inter, self-hosted (DEC-023)
   - [ ] Color palette with contrast checks
   - [ ] Spacing, radius, grid, breakpoints
 
@@ -244,7 +244,8 @@ All MVP requirements in overview §2.2 (see §4).
   - [ ] Price display
   - [ ] Location and map block
   - [ ] Video embed
-  - [ ] Form elements (if DEC-009 selects a form)
+
+Form elements are not needed (DEC-009, 2026-10-29): there is no form.
 
 #### F1.2.2 — Page Designs
 
@@ -287,7 +288,7 @@ All MVP requirements in overview §2.2 (see §4).
 - **Subtasks (evaluation criteria):**
   - [ ] Pre-rendered HTML (static generation or server rendering) for SEO and fast first load on mobile networks
   - [ ] First-class i18n with per-locale RTL/LTR
-  - [ ] All assets self-hostable; no required runtime calls to foreign services
+  - [ ] All assets self-hostable; no required runtime calls to foreign services except hosts approved in `decisions.md`
   - [ ] Builds and deploys on the chosen hosting (DEC-018) under Iranian network conditions, including package registry access
   - [ ] Supports unit/integration, E2E, and accessibility testing in CI
   - [ ] Content updates feasible for the people defined in DEC-014
@@ -317,7 +318,7 @@ All MVP requirements in overview §2.2 (see §4).
 ##### T1.3.3.2 — Implement locale utilities and self-hosted fonts
 - **Outcome:** Correct Persian formatting and typography everywhere.
 - **Depends on:** T1.3.3.1, DEC-015, DEC-023
-- **Acceptance criteria:** Unit-tested utilities for Persian digits, Solar Hijri dates, price formatting per DEC-015, and Persian text normalization (ي→ی, ك→ک, ZWNJ preserved); fonts self-hosted as WOFF2 with a defined `font-display` strategy; no requests to external font services.
+- **Acceptance criteria:** Unit-tested utilities for Persian digits, Solar Hijri dates, price formatting per DEC-015, and Persian text normalization (ي→ی, ك→ک, ZWNJ preserved); Vazirmatn (Persian) and Inter (Latin) self-hosted as WOFF2 (DEC-023) with a defined `font-display` strategy; no requests to external font services.
 
 #### F1.3.4 — Continuous Integration
 
@@ -461,7 +462,7 @@ Each page feature must also satisfy the **Page Implementation Standard** (§10).
 #### F1.5.9 — PAGE-008 تماس با ما
 
 ##### T1.5.9.1 — Implement the contact page
-- **Acceptance criteria:** Phone numbers are tappable (`tel:`) on mobile; working hours shown with Persian digits in Persian; the map works without VPN (F1.6.1); social links per DEC-010.
+- **Acceptance criteria:** Phone numbers are tappable (`tel:`) on mobile; working hours shown with Persian digits in Persian; the location block works without a VPN through Neshan, Balad, and the static fallback (Google Maps may not; F1.6.1, DEC-022); social links per DEC-010.
 - **Subtasks:**
   - [ ] Address and map
   - [ ] Contact channels
@@ -471,12 +472,16 @@ Each page feature must also satisfy the **Page Implementation Standard** (§10).
 #### F1.5.10 — PAGE-009 کارن و کیانا
 
 ##### T1.5.10.1 — Implement the Karen and Kiana page
-- **Blocked by:** DEC-007. Content, subtasks, and acceptance criteria are defined after the decision.
+- **Depends on:** DEC-007 (decided 2026-10-29)
+- **Acceptance criteria:** The page presents کارن and کیانا as two AI characters who introduce the center, and the content is commercial (DEC-007).
+- **Subtasks:**
+  - [ ] کارن and کیانا as two AI characters who introduce the center
+  - [ ] Commercial content
 
 #### F1.5.11 — PAGE-011 همکاری
 
 ##### T1.5.11.1 — Implement the collaboration page
-- **Acceptance criteria:** All sections present; the request method follows DEC-009 and works end to end (F1.6.2 if a form is chosen).
+- **Acceptance criteria:** All sections present; visitors request a meeting through contact channels on this page. There is no online form (DEC-009).
 - **Subtasks:**
   - [ ] Center introduction, goals, and values (creativity, problem solving, teamwork, hands-on learning)
   - [ ] Collaboration models: workshops at the school or the center; group visits
@@ -499,13 +504,14 @@ Each page feature must also satisfy the **Page Implementation Standard** (§10).
 
 ##### T1.6.1.1 — Implement the location block and map
 - **Depends on:** DEC-022, T1.4.2.1
-- **Acceptance criteria:** Map shows the center's location and loads in Iran without VPN; navigation links open the apps chosen in DEC-022; a static fallback (image and address) appears if the map fails; the map loads lazily and does not block rendering.
+- **Acceptance criteria:** The location block uses Google Maps, Neshan (نشان), and Balad (بلد) (DEC-022), including links that open those apps. Neshan, Balad, and the static fallback (image and address) load in Iran without a VPN. Google Maps is included and may not load without a VPN. The map loads lazily and does not block rendering.
 
-#### F1.6.2 — Request and Contact Handling (Conditional on DEC-009)
+#### F1.6.2 — Request and Contact Handling (*Not needed*, DEC-009)
 
 ##### T1.6.2.1 — Implement request submission
-- **Depends on:** DEC-009, DEC-018
-- **Acceptance criteria (if a form is chosen):** Server-side validation, including Iranian phone formats; spam protection that works in Iran without Google reCAPTCHA; submissions reliably delivered to the destination in DEC-009, with alerts on delivery failure; success and error messages in Persian and English. If DEC-009 selects contact channels only, this task is closed as *Not needed* with a reference to the decision.
+- **Status:** *Not needed* (DEC-009, 2026-10-29). There is no form. Visitors request a meeting through contact channels on PAGE-011.
+- **Depends on:** DEC-009
+- **Acceptance criteria:** Not applicable. DEC-009 selected contact channels only.
 
 #### F1.6.3 — Analytics
 
@@ -533,13 +539,13 @@ Tests are written alongside each feature. This stage completes coverage and runs
 - **Proposed journeys** (derived from overview §3; to confirm):
   1. Parent: home → activity or course page → age suitability, price, duration → how to register or contact.
   2. Parent: finds location, working hours, and contact channels.
-  3. Organization: home → collaboration page → requests a meeting (DEC-009).
+  3. Organization: home → collaboration page (PAGE-011) → requests a meeting through contact channels (DEC-009); no form.
   4. Visitor switches language and lands on the equivalent page.
   5. Buyer: sales page → Boost set → understands the purchase method (DEC-003).
 - **Acceptance criteria:** Each confirmed journey has E2E tests running in CI on mobile and desktop viewports, in Persian (and English per DEC-002); failures block merging.
 
 ##### T1.7.1.2 — Complete unit and integration tests for critical functionality
-- **Acceptance criteria:** Locale utilities, locale routing and direction, navigation behavior, and form validation/submission (if any) covered; all pass in CI.
+- **Acceptance criteria:** Locale utilities, locale routing and direction, and navigation behavior covered; all pass in CI. There is no form to validate (DEC-009).
 
 ##### T1.7.1.3 — Add automated responsive and accessibility checks to CI
 - **Acceptance criteria:** Automated accessibility scan of every page in both locales with zero critical/serious violations; layout checks at the defined breakpoints for key pages.
@@ -551,7 +557,7 @@ Tests are written alongside each feature. This stage completes coverage and runs
 - **Acceptance criteria:** All pages checked on the support matrix, including real Android and iOS devices; issues fixed or explicitly accepted.
 
 ##### T1.7.2.2 — Test from Iranian networks
-- **Acceptance criteria:** Staging checked **without VPN** on at least one mobile operator and one fixed-line ISP; no failed or blocked third-party requests; with all third-party domains blocked in browser developer tools, pages still render fully.
+- **Acceptance criteria:** Staging checked **without VPN** on at least one mobile operator and one fixed-line ISP. Google Maps may fail without a VPN (DEC-022). Neshan, Balad, and the static fallback still work. With unapproved third-party domains blocked, pages still render fully. Hosts approved in `decisions.md` may be requested.
 
 ##### T1.7.2.3 — Review accessibility manually
 - **Acceptance criteria:** Keyboard-only walkthrough of every page; screen reader spot checks in Persian (TalkBack, VoiceOver); layout usable at 200% zoom.
@@ -565,7 +571,7 @@ Tests are written alongside each feature. This stage completes coverage and runs
 - **Acceptance criteria:** Targets in §7 met on key pages (home, gallery, courses), measured on staging from an Iranian network.
 
 ##### T1.7.3.2 — Harden security
-- **Acceptance criteria:** HTTPS only with HSTS; security headers configured (Content-Security-Policy, X-Content-Type-Options, Referrer-Policy, frame-ancestors); no known high or critical dependency vulnerabilities; no secrets in the repository; form endpoints rate-limited (if any); staging access restricted.
+- **Acceptance criteria:** HTTPS only with HSTS; security headers configured (Content-Security-Policy, X-Content-Type-Options, Referrer-Policy, frame-ancestors); no known high or critical dependency vulnerabilities; no secrets in the repository; no form endpoints (DEC-009); staging access restricted.
 
 ### S1.8 — Launch in Iran
 

@@ -1,6 +1,6 @@
 # Phase 3 — Booking
 
-> **Status:** Not scheduled (post-MVP) · **Last updated:** 2026-10-26
+> **Status:** Not scheduled (post-MVP) · **Last updated:** 2026-10-29
 > Roadmap: [development-plan.md](../development-plan.md) · Decisions: [decisions.md](../project/decisions.md) · Constraints: [iran-constraints.md](../project/iran-constraints.md) · Testing: [testing-strategy.md](../testing/testing-strategy.md)
 
 ## 1. Purpose
@@ -18,7 +18,7 @@ Add a booking system for events, workshops, and set construction (رزرو بر�
 
 ## 3. Scope
 
-- **In scope:** the requirements in §2 and their integration into existing pages (PAGE-010 capacity, booking entry points, events per DEC-005).
+- **In scope:** the requirements in §2 and their integration into existing pages. Phase 1 capacity on PAGE-010 is static (DEC-004); Phase 3 replaces it with live capacity. Events are sections of existing pages, not new PAGE-IDs, and are not live in the MVP (DEC-005). Booking entry points are added in this phase.
 - **Out of scope:** online payment (Phase 4), unless DEC-029 decides otherwise.
 - **PAGE-IDs:** to be defined in `pages.md` (T3.1.1.3).
 
@@ -41,7 +41,7 @@ To be promoted to DECs when the phase starts:
 
 - Phase 1 website in production.
 - Architecture decisions (S3.2).
-- Set data (DEC-028) for set-construction booking; events placement (DEC-005).
+- Set data (DEC-028) for set-construction booking. Events are sections of existing pages and are not live in the MVP (DEC-005); this phase adds booking.
 - Iran constraints: SMS providers, Iran-hosted data storage, localization ([iran-constraints.md §6–7](../project/iran-constraints.md)).
 
 ## 6. Expected Outcomes
@@ -135,7 +135,7 @@ Provisional. Features marked *candidate* are likely needed but require confirmat
 #### F3.5.1 — Booking Entry Points
 
 ##### T3.5.1.1 — Integrate booking into existing pages
-- **Acceptance criteria:** PAGE-010 shows live capacity instead of static values (DEC-004); booking entry points added to relevant pages per the updated sitemap; existing tests pass.
+- **Acceptance criteria:** Phase 1 capacity is static (DEC-004); this task replaces it with live capacity on PAGE-010. Booking entry points added to relevant pages per the updated sitemap; existing tests pass.
 
 ### S3.6 — QA & Security
 

@@ -1,6 +1,6 @@
 # Testing Strategy
 
-> **Status:** Draft — proposals require approval · **Last updated:** 2026-10-27
+> **Status:** Draft — proposals require approval · **Last updated:** 2026-10-29
 > Roadmap: [development-plan.md](../development-plan.md) · Test plan: [test-plan.md](test-plan.md) · Requirements: [project-overview.md](../project/project-overview.md) §2.2.1–2.2.2 · Phase 1 testing work: [phase-1-mvp.md](../phases/phase-1-mvp.md) §7, §10, S1.7 · Decisions: [decisions.md](../project/decisions.md) · Constraints: [iran-constraints.md](../project/iran-constraints.md)
 
 This document defines how the project is tested across all phases: what is tested, how, with which tools, and which gates a change must pass. It is a strategy, not a task list. Tasks and their checkboxes stay in the phase documents, and decisions stay in `decisions.md`.
@@ -54,11 +54,11 @@ Nothing below is implemented. The risk column is this strategy's assessment and 
 | Content | 13 pages and their sections | 1 | pages.md; S1.5 | Medium |
 | Localization | Locale routing, `lang`/`dir`, language switcher to the equivalent page | 1 | T1.3.3.1; DEC-002 | High |
 | Localization | Persian digits, Solar Hijri dates, price formatting, text normalization | 1 | T1.3.3.2; DEC-015 | High |
-| Typography | Self-hosted Persian and Latin fonts | 1 | T1.3.3.2; DEC-023 | Medium |
+| Typography | Self-hosted Vazirmatn (Persian) and Inter (Latin); not a font CDN | 1 | T1.3.3.2; DEC-023 | Medium |
 | Shell | Header, mobile menu, footer, 404 page | 1 | F1.4.3 | Medium |
 | Components | FAQ accordion, gallery and image viewer, video embed, cards, price display | 1 | T1.2.1.3, T1.4.2.1 | Medium |
-| Integration | Map with static fallback | 1 | F1.6.1; DEC-022 | High |
-| Integration | Request form (only if chosen) | 1 | F1.6.2; DEC-009 | High if chosen |
+| Integration | Google Maps, Neshan (نشان), and Balad (بلد), with a static fallback. Google Maps may fail without a VPN; Neshan, Balad, and the fallback must still work | 1 | F1.6.1; DEC-022 | High |
+| Integration | Request form | 1 | F1.6.2; DEC-009 | Not needed: no form |
 | Integration | Video hosting | 1 | DEC-011 | Medium |
 | Integration | Social links | 1 | DEC-010 | Low |
 | Integration | Analytics | 1 | F1.6.3; DEC-021 | Medium |
@@ -77,7 +77,7 @@ Nothing below is implemented. The risk column is this strategy's assessment and 
 |---|---|---|---|
 | A-1 | Most visitors are in Iran, mostly on mobile | Mobile-first test priority; Android emphasis in the device matrix | Analytics after launch |
 | A-3 | Prices, events, and courses change often after launch | Content changes need validation and regression checks | DEC-014 |
-| A-4 | The MVP stores no personal data except form submissions | Phase 1 security scope stays small | DEC-009 |
+| A-4 | The MVP stores no personal data, because there is no form | Phase 1 security scope stays small | DEC-009 (decided 2026-10-29) |
 | A-6 | Phase 1 is mostly pre-rendered pages with little client-side logic | Risk concentrates in content, layout, localization, integrations, and delivery, which shapes the pyramid (§5) | DEC-016 |
 
 A-1, A-3, and A-4 are registered in development-plan §11. A-6 is new and is added there.
@@ -90,7 +90,6 @@ These are documented rather than filled in:
 - **Quality targets** (DEC-024) are proposals; quality gates in §11 depend on them.
 - **English scope** (DEC-002) decides whether the test matrix doubles.
 - **Content management** (DEC-017): if content is published without a pull request, content changes skip CI.
-- **Request mechanism** (DEC-009) decides whether Phase 1 has any server-side code to test.
 - **Breakpoints** are not defined until the Figma tokens exist (T1.2.1.2).
 - **Core journeys** are proposed, not confirmed (T1.7.1.1).
 - **No owner** is defined for testing inside Iran, real devices, release approval, or defect tracking.
@@ -104,7 +103,7 @@ These are documented rather than filled in:
 
 1. Prevent defects that make the site unreachable, slow, or broken for visitors in Iran.
 2. Make the Persian RTL experience correct by default, and English correct per DEC-002.
-3. Protect trust content: accurate prices, hours, and contact details; children's media published only with consent (DEC-013).
+3. Protect trust content: accurate prices, hours, and contact details; children's media published only after the necessary permissions (DEC-013).
 4. Meet the accessibility, performance, and browser targets confirmed in DEC-024.
 5. Validate every change in CI before merging, quickly enough that the workflow stays efficient (overview §2.2.1).
 6. Keep the test setup extensible to Phases 2–4 without rework.
@@ -113,7 +112,7 @@ These are documented rather than filled in:
 
 | Phase | In scope | Out of scope |
 |---|---|---|
-| 1 | All in-scope pages in both locales; localization; components; integrations (map, form, analytics, video, social links); SEO output; security headers; performance; accessibility; responsive and browser compatibility; delivery pipeline; reachability from Iran | Load testing (static pages; host and CDN capacity checked with the provider); penetration testing; internals of third-party services (only our integration and fallbacks are tested) |
+| 1 | All in-scope pages in both locales; localization; components; integrations (map: Google Maps, Neshan, and Balad; analytics, video, social links); SEO output; security headers; performance; accessibility; responsive and browser compatibility; delivery pipeline; reachability from Iran. No request form (DEC-009) | Load testing (static pages; host and CDN capacity checked with the provider); penetration testing; internals of third-party services (only our integration and fallbacks are tested); the request form (not needed, DEC-009) |
 | 2 | Integration of the album into PAGE-016, the data contract, performance and security at the boundary | Album internals, which the album project tests (phase-2-album §3) |
 | 3 | Booking rules, concurrency, identification, notifications, data protection, load | Payment (Phase 4, unless DEC-029 decides otherwise) |
 | 4 | Payment flow, failure modes, idempotency, reconciliation, payment security | Gateway internals |
@@ -146,7 +145,7 @@ Test names start with the PAGE-ID or task ID they verify, for example `PAGE-008 
 
 | Aspect | Approach |
 |---|---|
-| Scope | Locale utilities; locale resolution and URL builders; content schema validation; component state logic; build-time generation (sitemap, hreflang, metadata, structured data); form validation and submission (if DEC-009 selects a form). Phase 3: booking rules and capacity logic. Phase 4: the payment state machine and verification |
+| Scope | Locale utilities; locale resolution and URL builders; content schema validation; component state logic; build-time generation (sitemap, hreflang, metadata, structured data). Phase 1 has no form (DEC-009). Phase 3: booking rules and capacity logic. Phase 4: the payment state machine and verification |
 | Techniques | Statement and branch coverage; condition analysis of utilities; mutation testing of critical modules; static analysis (types, lint, logical-properties lint, accessibility lint); review of test code; dependency and secret scanning |
 | Phase | From S1.3 (first code) |
 
@@ -162,28 +161,17 @@ Examples:
 | Technique | Application |
 |---|---|
 | Requirements-based testing | Every section listed for a page in `pages.md` is present; every acceptance criterion has a test |
-| Equivalence partitioning and boundary values | Phone inputs, Solar Hijri date boundaries, price formatting, and in Phase 3, capacity values 0, 1, full, and full + 1 |
+| Equivalence partitioning and boundary values | Solar Hijri date boundaries, price formatting per DEC-015, and in Phase 3, capacity values 0, 1, full, and full + 1 |
 | Decision tables | Language switcher: the page has an English counterpart or not, and the visitor is on Persian or English |
 | State transitions | Mobile menu and image viewer; booking states (Phase 3); payment states (Phase 4) |
 | Journey testing | The core user journeys (T1.7.1.1) |
 | Exploratory testing | Time-boxed sessions with written charters |
 | Acceptance testing | The center's sign-off on content and behavior (T1.7.2.4) |
 
-Example: equivalence classes for a phone field, if DEC-009 selects a form.
-
-| Input | Class | Expected |
-|---|---|---|
-| `09123456789` | Valid mobile, Latin digits | Accepted |
-| `۰۹۱۲۳۴۵۶۷۸۹` | Valid mobile, Persian digits | Accepted and normalized |
-| `٠٩١٢٣٤٥٦٧٨٩` | Valid mobile, Arabic-Indic digits | Accepted and normalized |
-| `+989123456789`, `00989123456789` | International format | Accepted and normalized |
-| `0912 345 6789` | With spaces | Accepted and normalized |
-| `0912345678` | One digit short | Rejected with a Persian error message |
-| `02112345678` | Landline | Open question (§13.3) |
-| empty or letters | Invalid | Rejected |
+DEC-009 (2026-10-29) chose contact channels and no form, so Phase 1 has no phone-field test. Journey 3 checks that PAGE-011 points visitors to contact channels.
 
 Example exploratory charters:
-- Explore the Persian pages on a mid-range Android phone over a throttled connection with all foreign domains blocked, looking for layout breaks, missing content, and slow loading.
+- Explore the Persian pages on a mid-range Android phone over a throttled connection with foreign domains blocked, looking for layout breaks, missing content, and slow loading. Google Maps may fail; Neshan, Balad, and the static fallback must still show the location (DEC-022).
 - Explore language switching from every page, looking for wrong direction, missing translations, and wrong destinations.
 - Explore the gallery using only the keyboard, then TalkBack in Persian.
 
@@ -206,7 +194,7 @@ Each type lists its purpose, scope, method, tools, examples, priority, and the s
 ### 4.1 Unit Testing
 
 - **Purpose:** fast, isolated verification of logic.
-- **Scope (Phase 1):** locale utilities (digits, Solar Hijri dates, price formatting per DEC-015, normalization); URL and slug builders; locale resolution; metadata builders; content schema validators; form validators (if any). Presentational markup is not unit tested; component, page sweep, and visual tests cover it.
+- **Scope (Phase 1):** locale utilities (digits, Solar Hijri dates, price formatting per DEC-015, normalization); URL and slug builders; locale resolution; metadata builders; content schema validators. There is no form validator (DEC-009). Presentational markup is not unit tested; component, page sweep, and visual tests cover it. Vazirmatn and Inter are self-hosted (DEC-023), so font tests assert no requests to a font service.
 - **Method:** white-box, table-driven cases, a fixed clock with the `Asia/Tehran` time zone, Persian fixture strings, no network access.
 - **Tools:** Vitest.
 - **Priority:** P1. **Starts:** S1.3 (T1.3.3.2).
@@ -236,9 +224,8 @@ describe('T1.3.3.2 locale utilities', () => {
     - components rendered in Persian and English (`dir`, accessible names, mirrored icons);
     - the content pipeline, including missing-translation behavior;
     - build output: every page and locale generated, sitemap, robots, canonical, reciprocal hreflang, and structured data that parses with its required fields;
-    - the map fallback when the provider fails;
-    - analytics disabled on staging;
-    - the form handler with a fake delivery channel (if DEC-009 selects a form).
+    - the location block: Google Maps, Neshan, and Balad (DEC-022). Google Maps may fail without a VPN; Neshan, Balad, and the static fallback must still work. The allowlist may include hosts approved in `decisions.md`;
+    - analytics disabled on staging.
   - **Phase 2:** contract tests against the album's data or API (DEC-027, DEC-028).
   - **Phase 3:** API tests against a real database, booking rules, and concurrency; a fake SMS provider.
   - **Phase 4:** the gateway adapter against the sandbox; callback verification and idempotency.
@@ -261,8 +248,8 @@ Examples:
 - **Scope:** two kinds of test.
   - **Journey tests:** the core journeys in T1.7.1.1, once confirmed.
   - **Page sweep:** generated tests that run every in-scope PAGE-ID × locale × viewport and check:
-    - HTTP 200, no console errors, no failed requests;
-    - no requests to hosts outside the allowlist (§4.10);
+    - HTTP 200, no console errors, no failed requests, except that Google Maps may fail without a VPN (DEC-022);
+    - no requests to hosts outside the allowlist (§4.10). The allowlist may include hosts approved in `decisions.md`;
     - title and description present, and one `h1`;
     - no horizontal overflow;
     - an accessibility scan (§4.7) and a screenshot (§4.4).
@@ -306,7 +293,7 @@ And a visible path to registration or contact is available
 
 | Phase | Scope |
 |---|---|
-| 1 | HTTPS and HSTS; security headers, including a Content-Security-Policy, which also blocks unapproved foreign resources; dependency vulnerabilities; secrets in the repository; no sensitive data in shipped source maps; iframe restrictions for video and map embeds; staging excluded from search engines with restricted access (T1.7.3.2); form endpoint (if any): validation, output encoding, rate limiting, spam protection without reCAPTCHA |
+| 1 | HTTPS and HSTS; security headers, including a Content-Security-Policy, which blocks foreign resources that are not approved in `decisions.md` (DEC-022 approves Google Maps); dependency vulnerabilities; secrets in the repository; no sensitive data in shipped source maps; iframe restrictions for video and map embeds; staging excluded from search engines with restricted access (T1.7.3.2). Phase 1 has no form endpoint (DEC-009) |
 | 2 | The album boundary: CSP `frame-src` and `connect-src`, CORS, origin isolation |
 | 3 | Authentication and authorization (a visitor cannot read or change another person's booking), verification-code brute force, SMS abuse, rate limits, personal data exposure in responses and logs; threat model at the start of S3.2 |
 | 4 | Amount and order tampering, forged or replayed callbacks, idempotency, server-side verification, secret storage, no card data on the platform; threat model at the start of S4.3; external review (T4.6.1.2) |
@@ -317,7 +304,7 @@ And a visible path to registration or contact is available
 
 Examples:
 - Every response sends `Content-Security-Policy`, `Strict-Transport-Security`, `X-Content-Type-Options: nosniff`, and `Referrer-Policy`. The CSP lists no hosts beyond those approved in `decisions.md`.
-- The form endpoint (if any) rejects submissions above a set rate per IP.
+- Phase 1 has no form endpoint to rate-limit (DEC-009).
 
 ### 4.6 Performance Testing
 
@@ -346,8 +333,7 @@ Examples:
   - all pages in both locales;
   - contrast, focus order and visible focus (mirrored in RTL), headings and landmarks;
   - `lang` on mixed-language text, alt text in both languages;
-  - reflow at 320 CSS pixels and 200% zoom, target sizes, reduced motion;
-  - form labels and errors.
+  - reflow at 320 CSS pixels and 200% zoom, target sizes, reduced motion. Phase 1 has no form to label (DEC-009).
 - **Method:**
   - At design time: contrast and component states in Figma.
   - In code: accessibility lint rules, component tests with axe, and an axe scan of every page and locale in the page sweep.
@@ -366,7 +352,7 @@ Example: on PAGE-012, Enter and Space toggle a question, `aria-expanded` updates
   - portrait and landscape orientation;
   - enlarged system font sizes on Android;
   - long English strings against shorter Persian ones;
-  - Persian font fallback;
+  - Vazirmatn fallback (DEC-023);
   - direction-dependent icons such as arrows.
 - **Method:**
   - Automated: Chromium, Firefox, and WebKit (the engine behind iOS Safari) at mobile, tablet, and desktop viewports; a check for no horizontal overflow on every page; visual regression at each breakpoint.
@@ -417,8 +403,8 @@ Examples:
   - reachability from abroad, for search engine crawlers and the English audience (DEC-002);
   - DNS and SSL on staging and production.
 - **Method:**
-  - **Allowlist test:** every E2E run fails if the page requests a host that is not approved in `decisions.md`.
-  - **Blocked-foreign mode:** the page sweep runs with all hosts other than the site's own blocked, and pages must still render completely. This automates the T1.7.2.2 condition.
+  - **Allowlist test:** every E2E run fails if the page requests a host that is not approved in `decisions.md`. The allowlist may include those approved hosts. DEC-022 approves Google Maps; Neshan and Balad are included the same way.
+  - **Blocked-foreign mode:** the page sweep runs with foreign hosts blocked, and pages must still render completely. Google Maps may not load in that mode. Neshan, Balad, and the static fallback must still show the location. Hosts approved in `decisions.md` may be requested when the network permits (DEC-022 approves Google Maps).
   - **Network checks:** manual or scripted checks without a VPN on at least one mobile operator and one fixed-line ISP (T1.7.2.2). **Proposed (DEC-034):** cover all three mobile operators (همراه اول, ایرانسل, رایتل) where testers are available.
   - **Monitoring:** checks from inside and outside Iran (T1.8.3.1).
 - **Tools:** Playwright request interception; scripted checks from a server in Iran; uptime monitoring.
@@ -428,7 +414,7 @@ Illustrative allowlist test:
 
 ```ts
 test('PAGE-001 requests only approved hosts', async ({ page, baseURL }) => {
-  const approved = new Set([new URL(baseURL!).host /* plus hosts approved in decisions.md */]);
+  const approved = new Set([new URL(baseURL!).host /* plus hosts approved in decisions.md, including Google Maps (DEC-022) */]);
   const offenders: string[] = [];
   page.on('request', (request) => {
     const url = new URL(request.url());
@@ -461,7 +447,7 @@ test('PAGE-001 requests only approved hosts', async ({ page, baseURL }) => {
 |---|---|---|---|
 | Static analysis and content checks | Not counted; applies to every file | Every change, in seconds | Types, lint, logical CSS properties, content normalization, documentation link check |
 | Unit | About 60–70% | Every pull request | Locale utilities, validators, URL builders |
-| Integration and component | About 20–30% | Every pull request | Components in both locales, build output, SEO files, form handler |
+| Integration and component | About 20–30% | Every pull request | Components in both locales, build output, SEO files |
 | End-to-end journeys | About 5–10% | Every pull request (Chromium); nightly in all engines | The confirmed core journeys |
 | Generated page sweep | Generated, not hand-written | Every pull request | Per page × locale × viewport checks |
 | Manual and exploratory | Not automated | Before releases | Screen readers, real devices, Iranian networks, acceptance |
@@ -512,7 +498,7 @@ CI runners hosted abroad may be unable to reach an Iran-hosted staging environme
 |---|---|
 | Content | A dedicated fixture content set in Persian and English for automated tests, separate from real content, so content edits do not break tests. Real content is checked by the page sweep with content-independent assertions |
 | Persian edge cases | A shared corpus: ZWNJ words, Arabic ي/ك, Persian, Arabic-Indic, and Latin digits, mixed Persian and English phrases, very long words and titles, empty optional fields |
-| Media | Fixture images without people. Real photos of children are used only with consent under DEC-013 and are never committed as test baselines |
+| Media | Fixture images without people. Real photos of children are used only after the necessary permissions (DEC-013) and are never committed as test baselines |
 | Dates and time | Fixed clock in `Asia/Tehran`. Cases: the Nowruz year change, Esfand 30 in leap years, the Gregorian year boundary, Saturday as week start, Friday as weekend |
 | Prices | Zero, small, and very large amounts; formatting per DEC-015; a possible currency redenomination (iran-constraints §6) |
 | Personal data (Phase 3) | Synthetic people only; test phone numbers in a provider test mode; no copies of production data; seeded and reset for each test |
@@ -596,7 +582,7 @@ Targets for performance, accessibility, browsers, breakpoints, and SEO are defin
 | Code area | Line | Branch | Additional |
 |---|---|---|---|
 | Locale and formatting utilities | ≥ 95% | ≥ 90% | Mutation score ≥ 80% |
-| Validators (content schema, forms) | ≥ 90% | ≥ 85% | Every equivalence class has a case |
+| Validators (content schema) | ≥ 90% | ≥ 85% | Every equivalence class has a case. No form validators in Phase 1 (DEC-009) |
 | Other application logic (routing, metadata, build helpers) | ≥ 80% | ≥ 70% | — |
 | Presentational components and pages | No line target | — | Covered by component tests, page sweep, and visual regression |
 | Changed code in a pull request | ≥ 80% | — | Coverage of the touched logic must not decrease |
@@ -693,9 +679,10 @@ Defect priority, lifecycle, and tracking are defined in the [test plan §12](tes
 | DEC-018 Hosting | Staging tests, preview environments, performance from Iran | T1.3.5.1 |
 | DEC-017 Content management | Whether content changes pass through CI | T1.3.1.1 |
 | DEC-002 English scope | Size of the test matrix; translation completeness rules | T1.1.3.2 |
-| DEC-009 Request mechanism | Whether Phase 1 has server-side code, form tests, and security tests | T1.2.2.1 |
+| DEC-009 Request mechanism | Decided: no form. Journey 3 uses contact channels on PAGE-011; no form tests | T1.2.2.1 |
 | DEC-021 Analytics | Real-user performance data; excluding staging traffic | T1.6.3.1 |
-| DEC-022 Map, DEC-011 Video | Allowlist entries and fallback tests | T1.2.2.2, T1.1.4.3 |
+| DEC-022 Map | Allowlist entries and fallback tests. Providers: Google Maps, Neshan, and Balad. Google Maps may fail without a VPN | T1.2.2.2 |
+| DEC-011 Video | Allowlist entries and fallback tests. Not decided | T1.1.4.3 |
 | DEC-013 Consent | Which media may appear in tests and baselines | T1.1.4.3 |
 | DEC-015 Price display | Expected values in formatting tests | T1.2.2.2 |
 | DEC-008 GEO | What, if anything, to test for GEO | T1.6.4.2 |
@@ -713,7 +700,6 @@ Defect priority, lifecycle, and tracking are defined in the [test plan §12](tes
 - Who approves production releases (T1.8.1.2)?
 - Where are defects tracked? GitHub Issues is available now that the repository is on GitHub; confirm with DEC-020.
 - Which numbers stay in Latin digits in the Persian interface, if any (for example LEGO set numbers)? This defines the digit allowlist in §4.9.
-- Does the request form, if chosen, accept landline numbers?
 - Which older Android and iOS versions are supported? Phase-1-mvp §7 defers this to market and analytics data.
 - Phase 2: how current must the album's availability status be on PAGE-016, so staleness can be tested?
 - Phase 3: does the chosen SMS provider offer a test mode?
@@ -730,7 +716,7 @@ Existing task IDs are referenced. Items under "Proposed additions" are not yet i
 | S1.3 | Test runners; CI with static checks, unit tests, and build; locale utility tests; direction test; dependency audit; staging smoke tests; verify tool downloads from the CI network | T1.3.2.2, T1.3.3.1, T1.3.3.2, T1.3.4.1, T1.3.5.2 | Secret scanning; content checks (the documentation link check is already in CI) |
 | S1.4 | Component tests; page sweep harness (allowlist, blocked-foreign mode, axe, overflow, metadata); visual baselines; performance budgets in CI | T1.4.1.1, T1.4.2.1, T1.4.3.1–T1.4.3.3 | Page sweep; visual regression; performance budgets in CI |
 | S1.5 | Every page joins the page sweep; page-specific tests; journeys implemented as pages land | S1.5 tasks; phase-1-mvp §10 | — |
-| S1.6 | Map fallback, form, analytics exclusion, and SEO output tests | T1.6.1.1, T1.6.2.1, T1.6.3.1, T1.6.4.1 | — |
+| S1.6 | Map fallback for Google Maps, Neshan, and Balad; analytics exclusion; SEO output tests. No form tests (T1.6.2.1 is not needed, DEC-009) | T1.6.1.1, T1.6.3.1, T1.6.4.1 | — |
 | S1.7 | Complete E2E; full browser matrix; real devices; Iranian networks; performance; security; manual accessibility; acceptance | T1.7.1.1–T1.7.3.2 | Mutation testing of locale utilities; exploratory sessions with charters |
 | S1.8 | Production smoke tests; rollback test; monitoring; post-launch review including escaped defects | T1.8.1.2, T1.8.2.1, T1.8.3.1, T1.8.3.3 | — |
 | Phase 2 | Contract tests with the album; integration E2E; PWA installation and offline checks; staleness tests | T2.3.1.2, T2.4.1.1 | Contract tests |

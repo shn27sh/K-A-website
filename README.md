@@ -102,7 +102,7 @@ Index: [docs/README.md](docs/README.md). Main documents:
 ## Security
 
 - Never commit secrets, credentials, tokens, or personal data. CI currently needs no secrets.
-- Do not publish photos or videos of children without a consent policy (DEC-013, pending).
+- Photos, videos, and children's project work may be published publicly only after the necessary permissions have been obtained (DEC-013).
 - No security policy or vulnerability reporting process exists yet. Until one is defined, report security concerns to the project owner directly.
 
 ## License
